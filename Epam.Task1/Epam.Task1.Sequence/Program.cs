@@ -18,12 +18,14 @@ namespace Epam.Task1.Sequence
 
         public static string FunctionSequence(int N)
         {
-            int[] mass = new int[N];
-            for (int i = 1; i <= N; i++)
+            
+            String str = "";
+            for (int i = 1; i < N; i++)
             {
-                mass[i - 1] = i;
+                str += i + ", ";
             }
-            return String.Join(", ", mass);
+            str += N;
+            return str;
         }
     }
 
