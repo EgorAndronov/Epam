@@ -31,6 +31,7 @@ namespace Epam.Task3.Employee
             {
                 return this.surName;
             }
+
             set
             {
                 this.surName = value;
@@ -43,6 +44,7 @@ namespace Epam.Task3.Employee
             {
                 return this.firstName;
             }
+
             set
             {
                 this.firstName = value;
@@ -55,6 +57,7 @@ namespace Epam.Task3.Employee
             {
                 return this.patronymic;
             }
+
             set
             {
                 this.patronymic = value;
@@ -67,6 +70,7 @@ namespace Epam.Task3.Employee
             {
                 return this.dateOfBirth;
             }
+
             set
             {
                 this.dateOfBirth = value;
@@ -79,7 +83,6 @@ namespace Epam.Task3.Employee
             {
                 return DateTime.Now.Year - this.DateOfBirth.Year;
             }
-
         }
  
         public virtual void Display()

@@ -8,7 +8,7 @@ namespace Epam.Task3.Round
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter coordinates of center:");
             Console.Write("x: ");
@@ -16,6 +16,7 @@ namespace Epam.Task3.Round
             {
                 Console.WriteLine("Not integer value");
             }
+
             Console.Write("y: ");
             if (!int.TryParse(Console.ReadLine(), out int y))
             {

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EFC85070-055C-49B0-8075-B51B67B4CE0B}</ProjectGuid>
+    <ProjectGuid>{60FEF3A8-DCDB-4437-B690-E235FEA6A827}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Epam.Task3.VectorGraphicsEditor</RootNamespace>
-    <AssemblyName>Epam.Task3.VectorGraphicsEditor</AssemblyName>
+    <RootNamespace>Epam.Task3.Game</RootNamespace>
+    <AssemblyName>Epam.Task3.Game</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,14 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Circle.cs" />
-    <Compile Include="Figure.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="Elements.cs" />
+    <Compile Include="Enemies.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="Fruit.cs" />
+    <Compile Include="Gamer.cs" />
+    <Compile Include="IDisplay.cs" />
+    <Compile Include="IMoves.cs" />
+    <Compile Include="Obstacles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="Ring.cs" />
-    <Compile Include="Round.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

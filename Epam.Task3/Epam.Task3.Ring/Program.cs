@@ -8,11 +8,11 @@ namespace Epam.Task3.Ring
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Ring myRing = new Ring(10, 20);
 
-            Console.WriteLine(myRing.Square);
+            Console.WriteLine($"Ring: inner radius = {myRing.InnerRadius}, outer radius = {myRing.OuterRadius}, area = {myRing.Area}, sum of length = {myRing.SumLength}");
         }
     }
 }

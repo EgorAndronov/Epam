@@ -27,6 +27,7 @@ namespace Epam.Task3.Employee
             {
                 return this.workExperience;
             }
+
             set
             {
                 try
@@ -48,6 +49,7 @@ namespace Epam.Task3.Employee
             {
                 return this.position;
             }
+
             set
             {
                 this.position = value;
@@ -77,8 +79,6 @@ namespace Epam.Task3.Employee
             {
                 throw new Exception("Value < 0!");
             }
-
         }
-
     }
 }

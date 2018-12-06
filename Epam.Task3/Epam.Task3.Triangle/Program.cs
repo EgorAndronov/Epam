@@ -8,7 +8,7 @@ namespace Epam.Task3.Triangle
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Enter sides:");
             Console.Write("a: ");
@@ -16,11 +16,13 @@ namespace Epam.Task3.Triangle
             {
                 Console.WriteLine("Not integer value");
             }
+
             Console.Write("b: ");
             if (!int.TryParse(Console.ReadLine(), out int b))
             {
                 Console.WriteLine("Not integer value");
             }
+
             Console.Write("c: ");
             if (!int.TryParse(Console.ReadLine(), out int c))
             {
@@ -28,8 +30,7 @@ namespace Epam.Task3.Triangle
             }
 
             Triangle triangle = new Triangle(a, b, c);
-            triangle.Display();
-            
+            triangle.Display();            
         }
     }
 }

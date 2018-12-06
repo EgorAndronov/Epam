@@ -8,7 +8,7 @@ namespace Epam.Task3.Employee
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.Write("Enter surName: ");
             string surname = Console.ReadLine();
@@ -22,21 +22,25 @@ namespace Epam.Task3.Employee
             {
                 Console.WriteLine("You entered not a number");
             }
+
             Console.Write("Month:");
             if (!int.TryParse(Console.ReadLine(), out int month))
             {
                 Console.WriteLine("You entered not a number");
             }
+
             Console.Write("Day:");
             if (!int.TryParse(Console.ReadLine(), out int day))
             {
                 Console.WriteLine("You entered not a number");
             }
+
             Console.Write("Work Experience:");
             if (!int.TryParse(Console.ReadLine(), out int workExp))
             {
                 Console.WriteLine("You entered not a number");
             }
+
             Console.Write("Enter position: ");
             string posit = Console.ReadLine();
 

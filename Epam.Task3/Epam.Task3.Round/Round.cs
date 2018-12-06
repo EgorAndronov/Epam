@@ -25,7 +25,6 @@ namespace Epam.Task3.Round
         {
             this.CoordinatesCenter = coor;
             this.Radius = radius;
-
         }
 
         public int[] CoordinatesCenter
@@ -101,7 +100,6 @@ namespace Epam.Task3.Round
             {
                 throw new Exception("Value < 0!");
             }
-
         }
 
         private void PositiveValueCheck(double x)
@@ -110,7 +108,6 @@ namespace Epam.Task3.Round
             {
                 throw new Exception("Value < 0!");
             }
-
         }
 
         private void NotZeroValueCheck(int x)

@@ -16,7 +16,6 @@ namespace Epam.Task3.Triangle
         {
         }
 
-
         public Triangle(int a, int b, int c)
         {
             this.A = a;
@@ -116,10 +115,6 @@ namespace Epam.Task3.Triangle
             }
         }
 
-       
-
-        
-
         public void Display()
         {
             Console.WriteLine($"Sides: a = {A}, b = {B}, c = {C}, perimeter = {Perimeter}, area = {Area}");
@@ -143,8 +138,6 @@ namespace Epam.Task3.Triangle
             {
                 throw new Exception("Value = 0!");
             }
-
         }
-
     }
 }

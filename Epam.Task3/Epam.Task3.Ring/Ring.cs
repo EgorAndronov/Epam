@@ -9,43 +9,46 @@ namespace Epam.Task3.Ring
     public class Ring
     {
         private int[] coor = new int[2];
-        private int innerRadius;
-        private int outerRadius;
-        private float square;
-
+        private double innerRadius;
+        private double outerRadius;
+        
         public Ring()
         {
         }
-        public Ring(int innerR, int outerR)
+
+        public Ring(double innerR, double outerR)
         {
             this.InnerRadius = innerR;
             this.OuterRadius = outerR;
         }
-        public Ring(int innerR, int outerR, int[] coor)
+
+        public Ring(double innerR, double outerR, int[] coor)
         {
             this.InnerRadius = innerR;
             this.OuterRadius = outerR;
             this.Coor = coor;
         }
 
-        public int InnerRadius
+        public double InnerRadius
         {
             get
             {
                 return this.innerRadius;
             }
+
             set
             {
                 this.innerRadius = value;
             }
         }
 
-        public int OuterRadius
+        public double OuterRadius
         {
             get
             {
                 return this.outerRadius;
             }
+
             set
             {
                 this.outerRadius = value;
@@ -58,23 +61,43 @@ namespace Epam.Task3.Ring
             {
                 return this.coor;
             }
+
             set
             {
                 this.coor = value;
             }
         }
 
-        public float Square
+        public double InnerLength
         {
             get
             {
-                return this.square;
+                return 2 * Math.PI * this.InnerRadius;
             }
-            set
+        }
+
+        public double OuterLength
+        {
+            get
             {
-                this.square = (float)Math.PI * (float)(Math.Pow(this.outerRadius, 2) - Math.Pow(this.innerRadius, 2));
+                return 2 * Math.PI * this.OuterRadius;
+            }
+        }
+
+        public double SumLength
+        {
+            get
+            {
+                return this.InnerLength + this.OuterLength;
             }
         } 
 
+        public double Area
+        {
+            get
+            {
+                return Math.PI * (Math.Pow(this.outerRadius, 2) - Math.Pow(this.innerRadius, 2));
+            }
+        } 
     }
 }
