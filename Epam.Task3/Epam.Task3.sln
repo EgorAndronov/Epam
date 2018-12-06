@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task3.VectorGraphicsEd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task3.Game", "Epam.Task3.Game\Epam.Task3.Game.csproj", "{60FEF3A8-DCDB-4437-B690-E235FEA6A827}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task3.User", "Epam.Task3.User\Epam.Task3.User.csproj", "{8933384A-052D-453E-B4BB-1D11854497C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.Task3.User_1", "Epam.Task3.User_1\Epam.Task3.User_1.csproj", "{6EA20AD5-AEDF-442B-8EDB-FFA269934CD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{60FEF3A8-DCDB-4437-B690-E235FEA6A827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60FEF3A8-DCDB-4437-B690-E235FEA6A827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60FEF3A8-DCDB-4437-B690-E235FEA6A827}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8933384A-052D-453E-B4BB-1D11854497C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8933384A-052D-453E-B4BB-1D11854497C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8933384A-052D-453E-B4BB-1D11854497C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8933384A-052D-453E-B4BB-1D11854497C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA20AD5-AEDF-442B-8EDB-FFA269934CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA20AD5-AEDF-442B-8EDB-FFA269934CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA20AD5-AEDF-442B-8EDB-FFA269934CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA20AD5-AEDF-442B-8EDB-FFA269934CD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
