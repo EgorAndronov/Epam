@@ -9,7 +9,6 @@ using Epam.Task7.DAL.Interface;
 using Epam.Task7.Entities;
 using Newtonsoft.Json;
 
-
 namespace Epam.Task7.DAL
 {
     public class AwardDao : IAwardDao
@@ -29,6 +28,7 @@ namespace Epam.Task7.DAL
                     result.Add(line);
                 }
             }
+
             sr.Close();
             return result;
         }

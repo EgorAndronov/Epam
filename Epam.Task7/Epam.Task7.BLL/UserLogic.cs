@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Epam.Task7.BLL.Interface;
 using Epam.Task7.DAL.Interface;
 using Epam.Task7.Entities;
-
+using Newtonsoft.Json;
 
 namespace Epam.Task7.BLL
 {
     public class UserLogic : IUserLogic
     {
-        private IUserDao userDao;
+        private readonly IUserDao userDao;
         private readonly ICacheLogic<int, User> cacheLogic;
 
         public UserLogic(IUserDao userDao, ICacheLogic<int, User> cacheLogic)
@@ -72,7 +71,6 @@ namespace Epam.Task7.BLL
                 User user = JsonConvert.DeserializeObject<User>(item);
                 this.cacheLogic.Add(user.Id, user);
             }
-
         }
     }
 }

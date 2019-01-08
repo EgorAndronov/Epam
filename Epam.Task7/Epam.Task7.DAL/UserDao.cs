@@ -1,19 +1,18 @@
-﻿using Epam.Task7.BLL.Interface;
-using Epam.Task7.DAL.Interface;
-using Epam.Task7.Entities;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epam.Task7.BLL.Interface;
+using Epam.Task7.DAL.Interface;
+using Epam.Task7.Entities;
+using Newtonsoft.Json;
 
 namespace Epam.Task7.DAL
 {
     public class UserDao : IUserDao
     {
-
         private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "Data", "Data_of_users.txt"));
 
         public IEnumerable<string> Get()
@@ -29,6 +28,7 @@ namespace Epam.Task7.DAL
                     result.Add(line);
                 }
             }
+
             sr.Close();
             Console.WriteLine(this.file.FullName);
             return result;
@@ -46,6 +46,5 @@ namespace Epam.Task7.DAL
                 }
             }
         }
-
     }
 }

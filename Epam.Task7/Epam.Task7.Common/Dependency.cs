@@ -1,13 +1,13 @@
-﻿using Epam.Task7.BLL;
-using Epam.Task7.BLL.Interface;
-using Epam.Task7.DAL;
-using Epam.Task7.DAL.Interface;
-using Epam.Task7.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epam.Task7.BLL;
+using Epam.Task7.BLL.Interface;
+using Epam.Task7.DAL;
+using Epam.Task7.DAL.Interface;
+using Epam.Task7.Entities;
 
 namespace Epam.Task7.Common
 {
@@ -72,6 +72,5 @@ namespace Epam.Task7.Common
                 return userDao ?? (userDao = new UserDao());
             }
         }
-
     }
 }

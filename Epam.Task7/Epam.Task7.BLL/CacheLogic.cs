@@ -29,6 +29,7 @@ namespace Epam.Task7.BLL
             {
                 return cache[key];
             }
+
             return default(T);
         }
 

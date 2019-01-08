@@ -1,17 +1,17 @@
-﻿using Epam.Task7.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Epam.Task7.BLL.Interface;
 using Epam.Task7.Common;
+using Epam.Task7.Entities;
 
 namespace Epam.Task7.PL
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             try
             {
@@ -42,6 +42,7 @@ namespace Epam.Task7.PL
                                         }
                                     }
                                 }
+
                                 break;
                             case 2:
                                 Console.WriteLine("Enter id");
@@ -53,6 +54,7 @@ namespace Epam.Task7.PL
                                 {
                                     Console.WriteLine("Entered wrong id");
                                 }
+
                                 break;
                             case 3:
                                 ShowUsers(userLogic);
@@ -83,12 +85,14 @@ namespace Epam.Task7.PL
                                 {
                                     Console.WriteLine("Wrong id");
                                 }
+
                                 break;
                             case 6:
                                 ShowAwards(awardLogic);
                                 break;
                         }
                     }
+
                     Console.WriteLine("Click \"stop\" to exit the program or any button to continue.");
                     string stop = Console.ReadLine();
                     if (stop == "stop")
@@ -106,20 +110,20 @@ namespace Epam.Task7.PL
             }
         }
 
-        static void NewUser(string name, DateTime dateOfBirth, IUserLogic userLogic)
+        public static void NewUser(string name, DateTime dateOfBirth, IUserLogic userLogic)
         {
             var user = new User(name, dateOfBirth);
             userLogic.Add(user);
         }
 
-        static void NewAward(string title, IAwardLogic awardLogic)
+        public static void NewAward(string title, IAwardLogic awardLogic)
         {
             Award award = new Award { Title = title };
 
             awardLogic.AddAwards(award);
         }
 
-        static void ShowAwards(IAwardLogic awardLogic)
+        public static void ShowAwards(IAwardLogic awardLogic)
         {
             foreach (var item in awardLogic.GetAllAward())
             {
@@ -127,7 +131,7 @@ namespace Epam.Task7.PL
             }
         }
 
-        static void ShowUsers(IUserLogic userLogic)
+        public static void ShowUsers(IUserLogic userLogic)
         {
             foreach (var item in userLogic.GetAll())
             {

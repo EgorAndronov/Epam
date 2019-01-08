@@ -12,9 +12,8 @@ namespace Epam.Task7.BLL
 {
     public class AwardLogic : IAwardLogic
     {
-        private IAwardDao awardDao;
+        private readonly IAwardDao awardDao;
         private readonly ICacheLogic<int, Award> cacheLogicAwards;
-
 
         public AwardLogic(IAwardDao awardDao, ICacheLogic<int, Award> cacheLogic)
         {
@@ -22,7 +21,6 @@ namespace Epam.Task7.BLL
             this.cacheLogicAwards = cacheLogic;
             this.FillCache();
         }
-
 
         public IEnumerable<Award> GetAllAward()
         {
