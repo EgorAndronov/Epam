@@ -12,7 +12,6 @@ namespace Epam.Task3.MyString
         {
             MyString myString1 = new MyString("My String");
             MyString myString2 = new MyString("my String");
-            
         }
     }
 }

@@ -36,17 +36,9 @@ namespace Epam.Task3.Round
 
             set
             {
-                try
-                {
-                    this.PositiveValueCheck(value[0]);
-                    this.PositiveValueCheck(value[1]);
-                    this.coordinatesCenter = value;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
-                }
+                this.PositiveValueCheck(value[0]);
+                this.PositiveValueCheck(value[1]);
+                this.coordinatesCenter = value;
             }
         }
 
@@ -59,17 +51,9 @@ namespace Epam.Task3.Round
 
             set
             {
-                try
-                {
-                    this.PositiveValueCheck(value);
-                    this.NotZeroValueCheck(value);
-                    this.radius = value;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
-                }
+                this.PositiveValueCheck(value);
+                this.NotZeroValueCheck(value);
+                this.radius = value;
             }
         }
 

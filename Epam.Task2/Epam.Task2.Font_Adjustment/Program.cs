@@ -6,19 +6,27 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Font_Adjustment
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        [Flags]
+        private enum Font
+        {
+            None = 0,
+            Bold = 1,
+            Italic = 2,
+            Underline = 4,
+        }
+
+        public static void Main(string[] args)
         {
             int num;
             Font fnt = Font.None;
-            Console.WriteLine("Вводите соответствующее число для установки и удаления параметра");
+
             while (true)
             {
-                Console.WriteLine($"Параметры надписи: {fnt}");
-                Console.WriteLine("Введите:");
-                Console.WriteLine($"1: {Font.Bold}\n2: {Font.Italic}\n3: {Font.Underline}");
+                Console.WriteLine($"Label parameters: { fnt}");
 
+                Console.WriteLine($"1: {Font.Bold}\n2: {Font.Italic}\n3: {Font.Underline}");
 
                 if (int.TryParse(Console.ReadLine(), out num))
                 {
@@ -37,21 +45,9 @@ namespace Epam.Task2.Font_Adjustment
                 }
                 else
                 {
-                    Console.WriteLine("Число введено некорректно");
+                    Console.WriteLine("Incorrect number");
                 }
             }
-
-
-
-        }
-
-        [Flags]
-        enum Font
-        {
-            None = 0,
-            Bold = 1,
-            Italic = 2,
-            Underline = 4,
         }
     }
 }

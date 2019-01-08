@@ -6,59 +6,57 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Rectangle
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             while (true)
             {
-                int a;
-                int b;
-                Console.WriteLine("Введите сторону a (Целое положительное число): ");
-                if (int.TryParse(Console.ReadLine(), out a))
+                Console.WriteLine("Enter side \"a\" (Positive integer): ");
+
+                if (int.TryParse(Console.ReadLine(), out int a))
                 {
                     if (a < 0)
                     {
-                        Console.WriteLine("Число не может быть отрицательным, введите значение заново");
+                        Console.WriteLine("Number is negative");
                     }
                     else if (a == 0)
                     {
-                        Console.WriteLine("Число не может быть равно 0, введите значение заново");
+                        Console.WriteLine("Number = 0");
                     }
                     else
                     {
                         while (true)
                         {
-                            Console.WriteLine("Введите сторону b (Целое положительное число): ");
-                            if (int.TryParse(Console.ReadLine(), out b))
+                            Console.WriteLine("Enter side \"b\" (Positive integer): ");
+
+                            if (int.TryParse(Console.ReadLine(), out int b))
                             {
                                 if (b < 0)
                                 {
-                                    Console.WriteLine("Число не может быть отрицательным, введите значение заново");
+                                    Console.WriteLine("Number is negative");
                                 }
                                 else if (b == 0)
                                 {
-                                    Console.WriteLine("Число не может быть равно 0, введите значение заново");
+                                    Console.WriteLine("Number = 0");
                                 }
                                 else
                                 {
-                                    Console.WriteLine($"Площадь прямоугольника = {Fun(a, b)}");
+                                    Console.WriteLine($"Area of rectangle = {Fun(a, b)}");
                                     break;
                                 }
                             }
                         }
+
                         break;
                     }
-
                 }
-
             }
         }
 
-        static int Fun(int a, int b)
+        private static int Fun(int a, int b)
         {
             return a * b;
         }
-
     }
 }

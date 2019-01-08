@@ -6,42 +6,43 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Array_Processing
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int[] array = new int[10];
             Random rnd = new Random();
-            Console.WriteLine("Исходный массив:");
+            Console.WriteLine("Source array:");
+
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] = rnd.Next(0, 100);
                 Console.Write($"{array[i]} ");
             }
 
-
-
             ArraySort(ref array);
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine($"Минимальный элемент массива = {array[0]}, максимальный элемент массива = {array[array.Length - 1]}");
+            Console.WriteLine($"Min = {array[0]}, Max = {array[array.Length - 1]}");
             Console.WriteLine();
-            Console.WriteLine("Отсортированный массив:");
+            Console.WriteLine("Sorted array:");
+
             for (int i = 0; i < array.Length; i++)
             {
                 Console.Write($"{array[i]} ");
             }
+
             Console.WriteLine();
             Console.WriteLine();
         }
 
-        static void ArraySort(ref int[] array)
+        private static void ArraySort(ref int[] array)
         {
             int k;
 
             for (int j = 0; j < array.Length; j++)
             {
-                for (int i = 1; i < array.Length-j; i++)
+                for (int i = 1; i < array.Length - j; i++)
                 {
                     if (array[i - 1] > array[i])
                     {

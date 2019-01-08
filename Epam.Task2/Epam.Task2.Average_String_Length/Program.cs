@@ -6,24 +6,17 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Average_String_Length
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            string str = (Console.ReadLine());
-            //string str = "Привет, я Егор Андронов";
+            string str = Console.ReadLine();
 
             Console.WriteLine(WordAverageLength(str));
-
-
-
-
-            //Console.WriteLine(Char.IsPunctuation(s));
         }
 
-        static float WordAverageLength(string str)
+        private static float WordAverageLength(string str)
         {
-            
                 string[] arrStr = str.Split(' ');
                 float sum = 0f;
 
@@ -42,6 +35,7 @@ namespace Epam.Task2.Average_String_Length
                 {
                     sum += item.Length;
                 }
+
             return sum / arrStr.Length;
         }
     }

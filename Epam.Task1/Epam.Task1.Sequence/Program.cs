@@ -6,28 +6,25 @@ using System.Threading.Tasks;
 
 namespace Epam.Task1.Sequence
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Введите число");
+            Console.WriteLine("Enter number:");
             int number = int.Parse(Console.ReadLine());
             Console.WriteLine(FunctionSequence(number)); 
-            
         }
 
-        public static string FunctionSequence(int N)
+        public static string FunctionSequence(int n)
         {
-            
-            String str = "";
-            for (int i = 1; i < N; i++)
+            string str = string.Empty;
+            for (int i = 1; i < n; i++)
             {
                 str += i + ", ";
             }
-            str += N;
+
+            str += n;
             return str;
         }
     }
-
-   
 }

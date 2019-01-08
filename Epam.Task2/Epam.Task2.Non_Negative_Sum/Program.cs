@@ -6,27 +6,30 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Non_Negative_Sum
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int[] array = new int[10];
 
             Random rnd = new Random();
 
-            Console.WriteLine("Исходный массив:");
+            Console.WriteLine("Source array:");
+
             for (int i = 0; i < array.Length; i++)
             {
                 array[i] = rnd.Next(-10, 10);
                 Console.Write($"{array[i]} ");
             }
+
             Console.WriteLine();
-            Console.WriteLine($"Сумма неотрицательных элементов массива = {SumPos(array)}");
+            Console.WriteLine($"Positive sum = {SumPos(array)}");
         }
 
-        static int SumPos(int[] array)
+        private static int SumPos(int[] array)
         {
             int sum = 0;
+
             foreach (var item in array)
             {
                 if (item > 0)
@@ -34,8 +37,8 @@ namespace Epam.Task2.Non_Negative_Sum
                     sum += item;
                 }
             }
+
             return sum;
         }
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epam.Task3.User_1
 {
-    class User
+    public class User
     {
         private string surName = string.Empty;
         private string firstName = string.Empty;

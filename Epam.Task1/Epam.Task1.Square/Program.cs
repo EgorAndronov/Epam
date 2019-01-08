@@ -6,43 +6,42 @@ using System.Threading.Tasks;
 
 namespace Epam.Task1.Square
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             bool flag = true;
-            int number=0;
+            int number = 0;
+
             while (flag)
             {
-                Console.WriteLine("Введите положительное нечетное число");
+                Console.WriteLine("Enter positive uneven number ");
                 number = int.Parse(Console.ReadLine());
 
                 if (number % 2 == 0)
                 {
-                    Console.WriteLine("Вы ввели четное число");
+                    Console.WriteLine("Entered even number");
                 }
-
                 else if (number <= 0)
                 {
-                    Console.WriteLine("Вы ввели отрицательное число");
+                    Console.WriteLine("Entered negative number");
                 }
-
                 else
                 {
                     flag = false;
                 }
-                
             }
+
             FunctionSquare(number);
         }
 
-        static void FunctionSquare(int N)
+        private static void FunctionSquare(int n)
         {
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < N; j++)
+                for (int j = 0; j < n; j++)
                 {
-                    if (j == ((N-1)/2) && i == ((N-1)/2))
+                    if (j == ((n - 1) / 2) && i == ((n - 1) / 2))
                     {
                         Console.Write(' ');
                     }
@@ -51,6 +50,7 @@ namespace Epam.Task1.Square
                         Console.Write('*');
                     }
                 }
+
                 Console.WriteLine();
             }
         }

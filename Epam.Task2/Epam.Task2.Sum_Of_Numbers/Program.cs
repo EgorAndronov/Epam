@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Sum_Of_Numbers
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int num = 1000;
-            Console.WriteLine($"Сумма всех натуральных чисел меньше 1000 и кратных 3 или 5 = {Sum(num)}");
+            Console.WriteLine($"The sum of all positive integers is less than 1000 and a multiple of 3 or 5 = {Sum(num)}");
         }
 
-        static int Sum(int n)
+        private static int Sum(int n)
         {
             int sum = 0;
+
             for (int i = 1; i < n; i++)
             {
                 if (i % 3 == 0 || i % 5 == 0)
@@ -24,8 +25,8 @@ namespace Epam.Task2.Sum_Of_Numbers
                     sum += i;
                 }
             }
+
             return sum;
         }
-
     }
 }

@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace Epam.Task2.Triangle
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-
             int num = new int();
-            Console.WriteLine("Введите целое положительно число: ");
-            if(int.TryParse(Console.ReadLine(), out num))
+            Console.WriteLine("Enter positive integer number: ");
+
+            if (int.TryParse(Console.ReadLine(), out num))
             {
                 ShowTriangle(num);
             }
             else
             {
-                Console.WriteLine("Введено не число");
+                Console.WriteLine($"Entered not number");
             }
-            
         }
 
-        static void ShowTriangle(int n)
+        private static void ShowTriangle(int n)
         {
             for (int i = 1; i <= n; i++)
             {
@@ -32,6 +31,7 @@ namespace Epam.Task2.Triangle
                 {
                     Console.Write('*');
                 }
+
                 Console.WriteLine();
             }
         }
