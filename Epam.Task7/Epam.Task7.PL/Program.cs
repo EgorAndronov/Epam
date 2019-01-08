@@ -13,35 +13,108 @@ namespace Epam.Task7.PL
     {
         static void Main(string[] args)
         {
-            var userLogic = Dependency.UserLogic;
-            var awardLogic = Dependency.AwardLogic;
-            //NewUser("Егор Андроновыв", new DateTime(1996, 04, 05), userLogic);
-            //NewUser("Вася Пупкин", new DateTime(1996, 01, 06), userLogic);
-            //NewUser("Вася Лупкин", new DateTime(1996, 01, 04), userLogic);
-            //NewUser("Петя", new DateTime(1996, 01, 05), userLogic);
-            //NewUser("Юля", new DateTime(1996, 02, 03), userLogic);
-            //NewUser("Коля", new DateTime(1991, 01, 05), userLogic);
+            try
+            {
+                var userLogic = Dependency.UserLogic;
+                var awardLogic = Dependency.AwardLogic;
+                while (true)
+                {
+                    Console.WriteLine("Click \"1\" to add a user. Click \"2\" to delete the user. Click \"3\" to open the list of users. Click \"4\" to add a award to the list. Click \"5\" to add award for user. Press \"6\" for a list of awards.");
 
-            //NewAward("Gold", awardLogic);
-            //NewAward("Serebro", awardLogic);
-            //NewAward("Bronze", awardLogic);
-            NewAward("New", awardLogic);
-            ShowAwards(awardLogic);
-            awardLogic.Save();
-            ShowUsers(userLogic);
-            userLogic.Save();
+                    if (int.TryParse(Console.ReadLine(), out int num))
+                    {
+                        switch (num)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter Name");
+                                string name = Console.ReadLine();
+                                Console.WriteLine("Enter Date of Birthday");
+                                Console.WriteLine("Year:");
+                                if (int.TryParse(Console.ReadLine(), out int year))
+                                {
+                                    Console.WriteLine("Month:");
+                                    if (int.TryParse(Console.ReadLine(), out int month))
+                                    {
+                                        Console.WriteLine("Day:");
+                                        if (int.TryParse(Console.ReadLine(), out int day))
+                                        {
+                                            NewUser(name, new DateTime(year, month, day), userLogic);
+                                        }
+                                    }
+                                }
+                                break;
+                            case 2:
+                                Console.WriteLine("Enter id");
+                                if (int.TryParse(Console.ReadLine(), out int id))
+                                {
+                                    userLogic.Delete(id);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Entered wrong id");
+                                }
+                                break;
+                            case 3:
+                                ShowUsers(userLogic);
+                                break;
+                            case 4:
+                                Console.WriteLine("Enter title of award");
+                                string title = Console.ReadLine();
+                                NewAward(title, awardLogic);
+                                break;
+                            case 5:
+                                Console.WriteLine("Enter id of user");
+                                if (int.TryParse(Console.ReadLine(), out int idUser))
+                                {
+                                    Console.WriteLine("Enter id of award");
+                                    if (int.TryParse(Console.ReadLine(), out int idAward))
+                                    {
+                                        Console.WriteLine("Enter id of award");
+                                        var user = userLogic.GetById(idUser);
+                                        var award = awardLogic.GetById(idAward);
+                                        userLogic.AddAward(user, award);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Wrong id");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Wrong id");
+                                }
+                                break;
+                            case 6:
+                                ShowAwards(awardLogic);
+                                break;
+                        }
+                    }
+                    Console.WriteLine("Click \"stop\" to exit the program or any button to continue.");
+                    string stop = Console.ReadLine();
+                    if (stop == "stop")
+                    {
+                        break;
+                    }
+                }
+
+                awardLogic.Save();
+                userLogic.Save();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         static void NewUser(string name, DateTime dateOfBirth, IUserLogic userLogic)
         {
             var user = new User(name, dateOfBirth);
-
             userLogic.Add(user);
         }
 
         static void NewAward(string title, IAwardLogic awardLogic)
         {
-            Award award = new Award { Title = title};
+            Award award = new Award { Title = title };
 
             awardLogic.AddAwards(award);
         }
@@ -59,6 +132,13 @@ namespace Epam.Task7.PL
             foreach (var item in userLogic.GetAll())
             {
                 Console.WriteLine($"Id: {item.Id} Name: {item.Name} Date: {item.DateofBirth.ToShortDateString()} Age: {item.Age}");
+                if (item.Awards != null)
+                {
+                    foreach (var aw in item.Awards)
+                    {
+                        Console.WriteLine($"Awards {aw.Title}");
+                    }
+                }
             }
         }
     }

@@ -1,12 +1,12 @@
-﻿using Epam.Task7.BLL.Interface;
-using Epam.Task7.DAL.Interface;
-using Epam.Task7.Entities;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epam.Task7.BLL.Interface;
+using Epam.Task7.DAL.Interface;
+using Epam.Task7.Entities;
+using Newtonsoft.Json;
 
 namespace Epam.Task7.BLL
 {
@@ -26,15 +26,15 @@ namespace Epam.Task7.BLL
 
         public IEnumerable<Award> GetAllAward()
         {
-            return cacheLogicAwards.GetAll();
+            return this.cacheLogicAwards.GetAll();
         }
 
         public void AddAwards(Award award)
         {
             int lastId;
-            if (cacheLogicAwards.GetKeys().Any())
+            if (this.cacheLogicAwards.GetKeys().Any())
             {
-                lastId = cacheLogicAwards.GetKeys().Max();
+                lastId = this.cacheLogicAwards.GetKeys().Max();
             }
             else
             {
@@ -46,17 +46,22 @@ namespace Epam.Task7.BLL
             this.cacheLogicAwards.Add(award.Id, award);
         }
 
+        public Award GetById(int id)
+        {
+            return this.cacheLogicAwards.GetById(id);
+        }
+
         public void Save()
         {
-            awardDao.Save(cacheLogicAwards);
+            this.awardDao.Save(this.cacheLogicAwards);
         }
 
         private void FillCache()
         {
-            foreach (var item in awardDao.Get())
+            foreach (var item in this.awardDao.Get())
             {
                 Award award = JsonConvert.DeserializeObject<Award>(item);
-                cacheLogicAwards.Add(award.Id, award);
+                this.cacheLogicAwards.Add(award.Id, award);
             }
         }
     }

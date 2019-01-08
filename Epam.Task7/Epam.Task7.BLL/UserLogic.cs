@@ -1,12 +1,13 @@
-﻿using Epam.Task7.BLL.Interface;
-using Epam.Task7.DAL.Interface;
-using Epam.Task7.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Epam.Task7.BLL.Interface;
+using Epam.Task7.DAL.Interface;
+using Epam.Task7.Entities;
+
 
 namespace Epam.Task7.BLL
 {
@@ -25,9 +26,9 @@ namespace Epam.Task7.BLL
         public void Add(User user)
         {
             int lastId;
-            if (cacheLogic.GetKeys().Any())
+            if (this.cacheLogic.GetKeys().Any())
             {
-                lastId = cacheLogic.GetKeys().Max();
+                lastId = this.cacheLogic.GetKeys().Max();
             }
             else
             {
@@ -46,22 +47,32 @@ namespace Epam.Task7.BLL
 
         public IEnumerable<User> GetAll()
         {
-            return cacheLogic.GetAll();
+            return this.cacheLogic.GetAll();
         }
 
+        public User GetById(int id)
+        {
+            return this.cacheLogic.GetById(id);
+        }
 
         public void Save()
         {
-            userDao.Save(cacheLogic);
+            this.userDao.Save(this.cacheLogic);
+        }
+
+        public void AddAward(User user, Award award)
+        {
+            user.Awards.Add(award);
         }
 
         private void FillCache()
         {
-            foreach (var item in userDao.Get())
+            foreach (var item in this.userDao.Get())
             {
                 User user = JsonConvert.DeserializeObject<User>(item);
-                cacheLogic.Add(user.Id, user);
+                this.cacheLogic.Add(user.Id, user);
             }
+
         }
     }
 }

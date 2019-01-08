@@ -15,15 +15,23 @@ namespace Epam.Task7.Common
     {
         private static ICacheLogic<int, User> cacheLogic;
 
+        private static ICacheLogic<int, Award> cacheLogicAwards;
+
+        private static IUserLogic userLogic;
+
+        private static IAwardLogic awardLogic;
+
+        private static IAwardDao awardDao;
+
+        private static IUserDao userDao;
+
         public static ICacheLogic<int, User> CacheLogic
         {
             get
             {
-                return cacheLogic ?? (cacheLogic = new CacheLogic<int, User>()) ;
+                return cacheLogic ?? (cacheLogic = new CacheLogic<int, User>());
             }
         }
-
-        private static ICacheLogic<int, Award> cacheLogicAwards;
 
         public static ICacheLogic<int, Award> CacheLogicAwards
         {
@@ -33,8 +41,6 @@ namespace Epam.Task7.Common
             }
         }
 
-        private static IUserLogic userLogic;
-
         public static IUserLogic UserLogic
         {
             get
@@ -42,8 +48,6 @@ namespace Epam.Task7.Common
                 return userLogic ?? (userLogic = new UserLogic(UserDao, CacheLogic));
             }
         }
-
-        private static IAwardLogic awardLogic;
 
         public static IAwardLogic AwardLogic
         {
@@ -53,8 +57,6 @@ namespace Epam.Task7.Common
             }
         }
 
-        private static IAwardDao awardDao;
-
         public static IAwardDao AwardDao
         {
             get
@@ -62,8 +64,6 @@ namespace Epam.Task7.Common
                 return awardDao ?? (awardDao = new AwardDao());
             }
         }
-
-        private static IUserDao userDao;
 
         public static IUserDao UserDao
         {

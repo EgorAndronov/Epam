@@ -8,6 +8,18 @@ namespace Epam.Task7.Entities
 {
     public class User
     {
+        public List<Award> Awards = new List<Award>();
+
+        public User()
+        {
+        }
+
+        public User(string name, DateTime date)
+        {
+            this.Name = name;
+            this.DateofBirth = date;
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -23,20 +35,21 @@ namespace Epam.Task7.Entities
                 {
                     result--;
                 }
-                    return result;
+
+                return result;
             }
         }
 
-        public List<Award> Awards { get; set; }
-
-        public User()
-        {
-        }
-
-        public User(string name, DateTime date)
-        {
-            this.Name = name;
-            this.DateofBirth = date;
-        }
+        //public List<Award> Awards
+        //{
+        //    get
+        //    {
+        //        return this.award;
+        //    }
+        //    set
+        //    {
+        //        this.award = value;
+        //    }
+        //}
     }
 }

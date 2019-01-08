@@ -1,13 +1,13 @@
-﻿using Epam.Task7.BLL.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epam.Task7.BLL.Interface;
 
 namespace Epam.Task7.BLL
 {
-    public class CacheLogic<K,T> : ICacheLogic<K,T>
+    public class CacheLogic<K, T> : ICacheLogic<K, T>
     {
         private static Dictionary<K, T> cache = new Dictionary<K, T>();
 

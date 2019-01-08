@@ -1,6 +1,0 @@
-{"Id":1,"Name":"Егор Андроновыв","DateofBirth":"1996-04-05T00:00:00","Age":22,"Awards":null}
-{"Id":4,"Name":"Петя","DateofBirth":"1996-01-05T00:00:00","Age":23,"Awards":null}
-{"Id":5,"Name":"Юля","DateofBirth":"1996-02-03T00:00:00","Age":22,"Awards":null}
-{"Id":6,"Name":"Коля","DateofBirth":"1991-01-05T00:00:00","Age":28,"Awards":null}
-{"Id":7,"Name":"Юля","DateofBirth":"1996-02-03T00:00:00","Age":22,"Awards":null}
-{"Id":8,"Name":"Коля","DateofBirth":"1991-01-05T00:00:00","Age":28,"Awards":null}

@@ -16,11 +16,11 @@ namespace Epam.Task7.DAL
 
         private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "Data", "Data_of_users.txt"));
 
-        public IEnumerable<String> Get()
+        public IEnumerable<string> Get()
         {
             string line = string.Empty;
             List<string> result = new List<string>();
-            StreamReader sr = new StreamReader(file.FullName);
+            StreamReader sr = new StreamReader(this.file.FullName);
             while (line != null)
             {
                 line = sr.ReadLine();
@@ -30,14 +30,14 @@ namespace Epam.Task7.DAL
                 }
             }
             sr.Close();
-            Console.WriteLine(file.FullName);
+            Console.WriteLine(this.file.FullName);
             return result;
         }
 
         public void Save(ICacheLogic<int, User> cacheLogic)
         {
-            File.WriteAllText(file.FullName, string.Empty);
-            using (StreamWriter sw = file.AppendText())
+            File.WriteAllText(this.file.FullName, string.Empty);
+            using (StreamWriter sw = this.file.AppendText())
             {
                 foreach (var item in cacheLogic.GetAll())
                 {
