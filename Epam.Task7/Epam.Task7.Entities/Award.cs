@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Epam.Task7.Entities
 {
-    class Award
+    public class Award
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 }

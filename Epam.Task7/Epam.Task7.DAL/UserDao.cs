@@ -30,6 +30,7 @@ namespace Epam.Task7.DAL
                 }
             }
             sr.Close();
+            Console.WriteLine(file.FullName);
             return result;
         }
 

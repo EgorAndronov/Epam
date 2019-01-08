@@ -23,6 +23,16 @@ namespace Epam.Task7.Common
             }
         }
 
+        private static ICacheLogic<int, Award> cacheLogicAwards;
+
+        public static ICacheLogic<int, Award> CacheLogicAwards
+        {
+            get
+            {
+                return cacheLogicAwards ?? (cacheLogicAwards = new CacheLogic<int, Award>());
+            }
+        }
+
         private static IUserLogic userLogic;
 
         public static IUserLogic UserLogic
@@ -30,6 +40,26 @@ namespace Epam.Task7.Common
             get
             {
                 return userLogic ?? (userLogic = new UserLogic(UserDao, CacheLogic));
+            }
+        }
+
+        private static IAwardLogic awardLogic;
+
+        public static IAwardLogic AwardLogic
+        {
+            get
+            {
+                return awardLogic ?? (awardLogic = new AwardLogic(AwardDao, CacheLogicAwards));
+            }
+        }
+
+        private static IAwardDao awardDao;
+
+        public static IAwardDao AwardDao
+        {
+            get
+            {
+                return awardDao ?? (awardDao = new AwardDao());
             }
         }
 

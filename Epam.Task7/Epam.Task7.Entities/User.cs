@@ -27,6 +27,8 @@ namespace Epam.Task7.Entities
             }
         }
 
+        public List<Award> Awards { get; set; }
+
         public User()
         {
         }

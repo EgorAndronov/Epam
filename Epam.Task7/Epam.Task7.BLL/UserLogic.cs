@@ -34,9 +34,7 @@ namespace Epam.Task7.BLL
                 lastId = 0;
             }
 
-
             user.Id = ++lastId;
-
 
             this.cacheLogic.Add(user.Id, user);
         }
@@ -50,6 +48,7 @@ namespace Epam.Task7.BLL
         {
             return cacheLogic.GetAll();
         }
+
 
         public void Save()
         {

@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace Epam.Task7.BLL.Interface
 {
-    public interface IUserLogic
-    { 
-        void Add(User user);
+    public interface IAwardLogic
+    {
+        IEnumerable<Award> GetAllAward();
 
-        void Delete(int id);
-
-        IEnumerable<User> GetAll();
+        void AddAwards(Award award);
 
         void Save();
-
     }
 }
