@@ -48,6 +48,8 @@ p {
     padding: 5px;
     z-index: 1;
     text-align: center;
+    color: blue;
+    text-decoration: underline;
 }
 
 .menu:hover > p {
