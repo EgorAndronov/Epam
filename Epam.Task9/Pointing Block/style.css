@@ -1,0 +1,55 @@
+body{
+    background-color: #333333;
+}
+
+.main{
+    position: relative;
+    margin:100px auto;
+    max-width: 800px;
+    height: 150px;
+    background-color:#88B7D5;
+    text-align: center;
+    border:3px solid #C2E1F5;
+}
+
+.text{
+    color:white;
+    padding-top:20px;
+    font-size: 36px;
+}
+
+/*
+.triangle{
+    position: absolute;
+    width: 0;
+    height:0;
+    background-color:#88B7D5;
+    border: 100px solid transparent;
+    border-bottom: 100px solid #C2E1F5;
+    top:-200px;
+    left:38%;
+}
+*/
+
+.main::before,
+.main::after {
+    content: ' ';
+    bottom:100%;
+    left:42.5%;
+    position: absolute;
+}
+
+.main::after{
+    border: 60px solid transparent;
+    border-bottom: 60px solid #88B7D5;
+    width: 0;
+    height: 0;
+}
+
+.main::before{
+    border: 66px solid transparent;
+    border-bottom: 66px solid #C2E1F5;
+    width: 0;
+    height: 0;
+    left:41.7%;
+}

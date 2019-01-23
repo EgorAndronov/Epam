@@ -1,0 +1,35 @@
+body{
+    background-color: #333333;
+}
+
+.box{
+    display: inline-block;
+    background: repeating-linear-gradient(to bottom, transparent 0px, transparent 30px, #333333 30px, #333333 34px ) ,linear-gradient(to top, #FF9005, #FFCF57);
+    width: 60px;
+    margin: 0 5px;
+    border-radius: 10px 10px 0 0;
+}
+
+.one{
+    height:166px;
+}
+
+.two{
+    height:64px;
+}
+
+.three{
+    height:268px;
+}
+
+.four{
+    height:336px;
+}
+
+.five{
+    height:166px;
+}
+
+.six{
+    height:98px;
+}

@@ -1,0 +1,67 @@
+.menu {
+    width: 60px;
+    float: left;
+}
+
+.menuList {
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding-left: 3px;
+    padding-top: 5px;
+    width: 120px;
+    border-radius: 0 0 5px 5px;
+    background: #fff;
+    box-shadow: 0 0 5px 1px #B9B9B9;
+}
+
+.correct {
+    margin-left: 50px; 
+}
+
+li {
+    color: blue;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.fileList > li{
+    margin-left:10px;
+}
+
+.correctList > li{
+    margin-left:3px;
+}
+
+li:hover {
+    background: #37ABFF;
+}
+
+
+.menu:hover > .menuList{
+    display: inline-block;
+}
+
+p {
+    display: block;
+    margin-top: 2px;
+    padding: 5px;
+    z-index: 1;
+    text-align: center;
+}
+
+.menu:hover > p {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    background: #FFF;
+    position: relative;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    text-align: center;
+    box-shadow: 0 -4px 7px -3px #B9B9B9, 4px 0px 5px -3px #B9B9B9, -4px 0px 5px -3px #B9B9B9;
+    cursor: pointer;
+}
+
+
+

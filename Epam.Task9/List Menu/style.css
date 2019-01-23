@@ -1,0 +1,14 @@
+#list{
+    color: #A12F2C;
+    font-weight: 600;
+    width: 200px;
+    background: #F9E497;
+    padding: 5px 10px;
+    border:  1px solid black;
+    border-radius: 8px;
+    box-shadow:5px 5px #880000;
+}
+
+#list li{
+    margin: 10px 0;
+}

@@ -1,0 +1,31 @@
+body{
+    font-family: sans-serif;
+}
+
+.main{
+    position: relative;
+    max-width: 450px;
+}
+.header{
+    width:100%;
+    background-color: #008B66;
+    font-size: 20px;
+    color:white;
+}
+
+.header>p{
+    padding:10px;
+}
+
+.content{
+    position:absolute;
+    background-color: #DFE6E1;
+    width: 90%;
+    padding:10px;
+    right: 0;
+    top:34px;
+}
+
+.content>p{
+    margin: 0;
+}
