@@ -1,0 +1,18 @@
+﻿@using Epam.Task7.Common;
+
+@if (IsAjax)
+{
+
+    var userLogic = Dependency.UserLogic;
+    var userList = userLogic.GetAll();
+
+
+    <ul>
+        @foreach (var item in userList)
+        {
+            <li>@(String.Format($"id: {item.Id}, name:{item.Name}, date of Birth: {item.DateofBirth.ToString("d")}, age: {item.Age}"))</li>
+        }
+    </ul>
+
+}
+

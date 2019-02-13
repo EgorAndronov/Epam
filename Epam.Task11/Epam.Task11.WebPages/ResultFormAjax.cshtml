@@ -1,0 +1,132 @@
+﻿@using Epam.Task7.Entities;
+@using Epam.Task7.Common;
+
+@if (IsAjax)
+{
+    var classForm = Request.Params["classForm"];
+
+    if (classForm == "add-user")
+    {
+
+        var name = Request.Params["name"];
+        var year = int.Parse(Request.Params["year"]);
+        var month = int.Parse(Request.Params["month"]);
+        var day = int.Parse(Request.Params["day"]);
+
+
+        var userLogic = Dependency.UserLogic;
+        var user = new User(name, new DateTime(year, month, day));
+        userLogic.Add(user);
+        userLogic.Save();
+
+        <p>Пользователь добавлен</p>
+
+    }
+    else if (classForm == "delete-user")
+    {
+        var id = int.Parse(Request.Params["id"]);
+
+        var userLogic = Dependency.UserLogic;
+        userLogic.Delete(id);
+        userLogic.Save();
+
+        <p>Пользователь удален</p>
+    }
+    else if (classForm == "add-award")
+    {
+        var name = Request.Params["name"];
+        var awardLogic = Dependency.AwardLogic;
+        Award award = new Award { Title = name };
+
+        awardLogic.AddAwards(award);
+        awardLogic.Save();
+        <p>Награда добавлена</p>
+    }
+    else if (classForm == "add-award-user")
+    {
+        var idAward = int.Parse(Request.Params["idAward"]);
+        var idUser = int.Parse(Request.Params["idUser"]);
+        var userLogic = Dependency.UserLogic;
+        var awardLogic = Dependency.AwardLogic;
+        var user = userLogic.GetById(idUser);
+        var award = awardLogic.GetById(idAward);
+
+        userLogic.AddAward(user, award);
+        userLogic.Save();
+
+        <p>Награда добавлена</p>
+    }
+    else if (classForm == "change")
+    {
+        var id = int.Parse(Request.Params["id"]);
+        var userLogic = Dependency.UserLogic;
+        var awardLogic = Dependency.AwardLogic;
+        var user = userLogic.GetById(id);
+
+
+        <form action="" method="post" class="result-form change-by-id">
+            <input type="number" name="idOfUser" value="@user.Id" disabled /><br />
+            <label>Измените нужные поля</label><br />
+            <label>Имя</label>
+            <input type="text" name="nameOfUser" value="@user.Name" /><br />
+            <p>День Рождения</p>
+            <label>Год</label>
+            <select name="yearOfUser">
+                @for (var i = 2019; i >= 1900; i--)
+                {
+                    if (i != user.DateofBirth.Year)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                }
+            </select>
+            <label>Месяц</label>
+            <select name="monthOfUser">
+                @for (var i = 1; i <= 12; i++)
+                {
+                    if (i != user.DateofBirth.Month)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                }
+            </select>
+            <label>День</label>
+            <select name="dayOfUser">
+                @for (var i = 1; i <= 31; i++)
+                {
+                    if (i != user.DateofBirth.Day)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                }
+            </select>
+            <button class="submit-change" type="submit" name="submitChange">Enter</button>
+        </form>
+        <script src="change_user.js"></script>
+    }
+    else if (classForm == "delete-award")
+    {
+        var id = int.Parse(Request.Params["id"]);
+
+        var awardLogic = Dependency.AwardLogic;
+        var userLogic = Dependency.UserLogic;
+
+        awardLogic.Delete(id);
+        awardLogic.Save();
+
+
+    <p>Награда удалена</p>
+    }
+    }

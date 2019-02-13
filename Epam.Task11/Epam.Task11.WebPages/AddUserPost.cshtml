@@ -1,0 +1,14 @@
+﻿@using Epam.Task7.Entities;
+@using Epam.Task7.Common;
+
+@if (IsPost)
+{
+    var name = Request.Params["nameOfUser"];
+    var year = int.Parse(Request.Params["yearOfUser"]);
+    var month = int.Parse(Request.Params["monthOfUser"]);
+    var day = int.Parse(Request.Params["dayOfUser"]);
+    var userLogic = Dependency.UserLogic;
+    var user = new User(name, new DateTime(year, month, day));
+    userLogic.Add(user);
+    userLogic.Save();
+}

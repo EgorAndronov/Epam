@@ -55,8 +55,11 @@ namespace Epam.Task6.Backup_System
             var backupPath = Path.Combine(this.backup.FullName, string.Format($"Backup { fileName }"));
             var backupFolder = new DirectoryInfo(backupPath);
             backupFolder.Create();
-            string fileBackName = string.Format($"{status}{e.Name}");
-            var fileBackPath = Path.Combine(backupPath, fileBackName);
+            var fileBackPath = Path.Combine(backupPath, e.Name);
+            var infoPath = Path.Combine(backupPath, "textfile.txt");
+            StreamWriter infoFile = new StreamWriter(infoPath);
+            infoFile.WriteLine(status);
+            infoFile.Close();
             file.CopyTo(fileBackPath);
         }
 
@@ -70,7 +73,7 @@ namespace Epam.Task6.Backup_System
             {
                 this.watcher.EnableRaisingEvents = true;
                 Console.WriteLine($"Файл {e.FullPath} добавлен");
-                this.CreateBackup(e, "(create)");
+                this.CreateBackup(e, "create");
             }
         }
 
@@ -85,7 +88,7 @@ namespace Epam.Task6.Backup_System
             {
                 this.watcher.EnableRaisingEvents = true;
                 Console.WriteLine($"Файл {e.FullPath} изменен");
-                this.CreateBackup(e, "(change)");
+                this.CreateBackup(e, "change");
             }
         }
 
@@ -112,7 +115,7 @@ namespace Epam.Task6.Backup_System
             {
                 this.watcher.EnableRaisingEvents = true;
                 Console.WriteLine($"Файл {e.FullPath} переименован");
-                this.CreateBackup(e, "(rename)");
+                this.CreateBackup(e, "rename");
             }
         }
     }

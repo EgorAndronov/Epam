@@ -1,0 +1,121 @@
+﻿@using Epam.Task7.Entities;
+@using Epam.Task7.Common;
+
+@if (IsAjax)
+{
+    <script src="result_form.js"></script>
+
+    var value = Request.Params["value"];
+
+
+    if (value == "addUser")
+    {
+        <form action="" method="post" class="result-form add-user">
+            <label>Имя</label>
+            <input type="text" name="nameOfUser" value="" /><br />
+            <p>День Рождения</p>
+            <label>Год</label>
+            <select name="yearOfUser">
+                @for (var i = 2019; i >= 1900; i--)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <label>Месяц</label>
+            <select name="monthOfUser">
+                @for (var i = 1; i <= 12; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <label>День</label>
+            <select name="dayOfUser">
+                @for (var i = 1; i <= 31; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+            <button class="submit-add" type="submit" name="submitAdd">Enter</button>
+        </form>
+
+    }
+    else if (value == "deleteUser")
+    {
+        <form action="" method="post" class="result-form delete-user">
+            <label>Введите уникальный номер пользователя</label>
+            <input type="number" name="idOfUser" value="" /><br />
+
+            <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+        </form>
+
+    }
+    else if (value == "userList")
+    {
+        var userLogic = Dependency.UserLogic;
+        var userList = userLogic.GetAll();
+
+        <ul>
+            @foreach (var item in userList)
+            {
+                <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
+                if (item.Awards != null)
+                {
+                    <p>Награды:</p>
+                    <ol>
+                        @foreach (var aw in item.Awards)
+                        {
+                            <li>@aw.Title</li>
+                        }
+                    </ol>
+                }
+            }
+        </ul>
+    }
+    else if (value == "addNewAward")
+    {
+        <form action="" method="post" class="result-form add-award">
+            <label>Введите название награды</label>
+            <input type="text" name="newAward" value="" /><br />
+            <button class="submit-add-award" type="submit" name="submitAddAward">Enter</button>
+        </form>
+    }
+    else if (value == "addAwardUser")
+    {
+        <form action="" method="post" class="result-form add-award-user">
+            <label>Введите уникальный номер пользователя</label>
+            <input type="number" name="idOfUser" value="" /><br />
+            <label>Введите уникальный номер награды</label>
+            <input type="number" name="idOfAward" value="" /><br />
+            <button class="submit-add-award-user" type="submit" name="submitAddAwardUser">Enter</button>
+        </form>
+    }
+    else if (value == "awardList")
+    {
+        var awardLogic = Dependency.AwardLogic;
+        <ul>
+            @foreach (var item in awardLogic.GetAllAward())
+            {
+                <li>@($"Id: {item.Id} Title: {item.Title}")</li>
+            }
+        </ul>
+    }
+    else if (value == "changeUser")
+    {
+        <form action="" method="post" class="result-form change">
+            <label>Введите уникальный номер пользователя</label>
+            <input type="number" name="idOfUser" value="" /><br />
+            <button class="submit-change" type="submit" name="submitChange">Enter</button>
+        </form>
+    }
+    else if (value == "deleteAward")
+    {
+        <form action="" method="post" class="result-form delete-award">
+            <label>Введите уникальный номер награды</label>
+            <input type="number" name="idOfAward" value="" /><br />
+
+            <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+        </form>
+
+    }
+}
+

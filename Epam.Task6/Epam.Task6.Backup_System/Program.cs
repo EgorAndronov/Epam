@@ -38,7 +38,9 @@ namespace Epam.Task6.Backup_System
 
                         if (x == 2)
                         {
-                            ////BackupClass backup = new BackupClass(pathMain, pathBack);
+                            BackupClass backup = new BackupClass(pathMain, pathBack);
+                            //backup.ShowFolders();
+                            backup.BackupFolder();
                             Console.WriteLine("Enter \"n\" for exit");
                             while (Console.ReadLine() != "n")
                             {

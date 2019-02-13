@@ -1,0 +1,12 @@
+﻿@using Epam.Task7.Entities;
+@using Epam.Task7.Common;
+
+@if (IsPost)
+{
+    var id = int.Parse(Request.Params["idOfUser"]);
+
+    var userLogic = Dependency.UserLogic;
+    userLogic.Delete(id);
+    userLogic.Save();
+}
+

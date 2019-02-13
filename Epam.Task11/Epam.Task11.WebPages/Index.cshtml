@@ -1,0 +1,111 @@
+﻿@{
+    /**/
+
+    Layout = "~/_Layout.cshtml";
+    PageData["Title"] = "Index";
+}
+
+@using Epam.Task7.Entities;
+@using Epam.Task7.Common;
+
+@{
+
+    IEnumerable<User> userList = new List<User>();
+
+}
+
+@section Styles{
+    <style>
+        .submit-menu {
+            padding: 5px;
+        }
+    </style>
+}
+
+@section Scripts{
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
+}
+
+@RenderPage(" ~/_Registration.cshtml")
+
+<form action="/Index.cshtml" method="post" id="main-menu">
+    <select id="list-menu" name="list-menu">
+        <option value="addUser">Добавить пользователя</option>
+        <option value="deleteUser">Удалить пользователя</option>
+        <option value="userList">Список пользователей</option>
+        <option value="addNewAward">Добавить новую награду</option>
+        <option value="addAwardUser">Добавить награду пользователю из существующих</option>
+        <option value="awardList">Список наград</option>
+        <option value="changeUser">Изменить информацию о пользователе</option>
+        <option value="deleteAward">Удалить награду</option>
+    </select>
+
+    <button id="submit-menu" type="submit" name="submitMenu">Enter</button>
+</form>
+
+<div id="result-block">
+
+</div>
+
+@*@if (IsPost)
+    {
+        var select = Request.Params["list-menu"];
+
+        if (select == "addUser")
+        {
+            <form action="/AddUserPost.cshtml" method="post" class="add-user">
+                <label>Имя</label>
+                <input type="text" name="nameOfUser" value="" /><br />
+                <p>День Рождения</p>
+                <label>Год</label>
+                <select name="yearOfUser">
+                    @for (var i = 2019; i >= 1900; i--)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <label>Месяц</label>
+                <select name="monthOfUser">
+                    @for (var i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <label>День</label>
+                <select name="dayOfUser">
+                    @for (var i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <button class="submit-add" type="submit" name="submitAdd">Enter</button>
+            </form>
+
+        }
+        else if (select == "deleteUser")
+        {
+            <form action="/DeleteUserPost.cshtml" method="post" class="add-user">
+                <label>Введите уникальный номер пользователя</label>
+                <input type="number" name="idOfUser" value="" /><br />
+
+                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+            </form>
+
+        }
+        else if (select == "userList")
+        {
+            var userLogic = Dependency.UserLogic;
+            userList = userLogic.GetAll();
+
+            <ul>
+                @foreach (var item in userList)
+                {
+                    <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
+                }
+            </ul>
+        }
+    }*@
+
+
