@@ -75,8 +75,7 @@ namespace Epam.Task7.BLL
         {
             foreach (var item in this.userDao.Get())
             {
-                User user = JsonConvert.DeserializeObject<User>(item);
-                this.cacheLogic.Add(user.Id, user);
+                this.cacheLogic.Add(item.Id, item);
             }
         }
     }

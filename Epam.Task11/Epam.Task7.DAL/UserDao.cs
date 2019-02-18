@@ -15,17 +15,18 @@ namespace Epam.Task7.DAL
     {
         private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Data", "Data_of_users.txt"));
 
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
             string line = string.Empty;
-            List<string> result = new List<string>();
+            List<User> result = new List<User>();
             StreamReader sr = new StreamReader(this.file.FullName);
             while (line != null)
             {
                 line = sr.ReadLine();
                 if (line != null)
                 {
-                    result.Add(line);
+                    User user = JsonConvert.DeserializeObject<User>(line);
+                    result.Add(user);
                 }
             }
 

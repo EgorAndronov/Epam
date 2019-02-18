@@ -12,6 +12,6 @@ namespace Epam.Task7.DAL.Interface
     {
         void Save(ICacheLogic<int, User> cacheLogic);
 
-        IEnumerable<string> Get();
+        IEnumerable<User> Get();
     }
 }

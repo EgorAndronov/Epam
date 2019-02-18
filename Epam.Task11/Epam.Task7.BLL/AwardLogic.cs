@@ -64,8 +64,8 @@ namespace Epam.Task7.BLL
         {
             foreach (var item in this.awardDao.Get())
             {
-                Award award = JsonConvert.DeserializeObject<Award>(item);
-                this.cacheLogicAwards.Add(award.Id, award);
+               
+                this.cacheLogicAwards.Add(item.Id, item);
             }
         }
     }

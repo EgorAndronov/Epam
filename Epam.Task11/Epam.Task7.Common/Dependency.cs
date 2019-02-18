@@ -61,7 +61,7 @@ namespace Epam.Task7.Common
         {
             get
             {
-                return awardDao ?? (awardDao = new AwardDao());
+                return awardDao ?? (awardDao = new AwardSQLDao());
             }
         }
 
@@ -69,7 +69,7 @@ namespace Epam.Task7.Common
         {
             get
             {
-                return userDao ?? (userDao = new UserDao());
+                return userDao ?? (userDao = new UserSQLDao());
             }
         }
     }

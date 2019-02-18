@@ -10,7 +10,7 @@ namespace Epam.Task7.DAL.Interface
 {
     public interface IAwardDao
     {
-        IEnumerable<string> Get();
+        IEnumerable<Award> Get();
 
         void Save(ICacheLogic<int, Award> cacheLogic);
     }

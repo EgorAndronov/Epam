@@ -15,17 +15,18 @@ namespace Epam.Task7.DAL
     {
         private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Data", "Awards.txt"));
 
-        public IEnumerable<string> Get()
+        public IEnumerable<Award> Get()
         {
             string line = string.Empty;
-            List<string> result = new List<string>();
+            List<Award> result = new List<Award>();
             StreamReader sr = new StreamReader(this.file.FullName);
             while (line != null)
             {
                 line = sr.ReadLine();
                 if (line != null)
                 {
-                    result.Add(line);
+                    Award award = JsonConvert.DeserializeObject<Award>(line);
+                    result.Add(award);
                 }
             }
 
