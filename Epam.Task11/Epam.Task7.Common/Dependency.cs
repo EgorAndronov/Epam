@@ -25,6 +25,10 @@ namespace Epam.Task7.Common
 
         private static IUserDao userDao;
 
+        private static IRegisteredUsersLogic registeredLogic;
+
+        private static IRegisteredUsersDao registeredDao;
+
         public static ICacheLogic<int, User> CacheLogic
         {
             get
@@ -70,6 +74,22 @@ namespace Epam.Task7.Common
             get
             {
                 return userDao ?? (userDao = new UserSQLDao());
+            }
+        }
+
+        public static IRegisteredUsersDao RegisteredDao
+        {
+            get
+            {
+                return registeredDao ?? (registeredDao = new RegisteredUsersDao());
+            }
+        }
+
+        public static IRegisteredUsersLogic RegisteredLogic
+        {
+            get
+            {
+                return registeredLogic ?? (registeredLogic = new RegisteredUsersLogic(RegisteredDao));
             }
         }
     }

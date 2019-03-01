@@ -1,1 +1,4 @@
-{"Id":1,"Name":"Егор Андронов","DateofBirth":"1996-03-05T00:00:00","Age":22,"Awards":[{"Id":1,"Title":"Чемпион чего-нибудь"}]}
+{"Id":1,"Name":"Egor","DateofBirth":"1996-03-05T00:00:00","Age":22}
+{"Id":2,"Name":"Sveta","DateofBirth":"1996-02-16T00:00:00","Age":23}
+{"Id":3,"Name":"Artem","DateofBirth":"1995-06-20T00:00:00","Age":23}
+{"Id":4,"Name":"Valera","DateofBirth":"1995-04-03T00:00:00","Age":23}

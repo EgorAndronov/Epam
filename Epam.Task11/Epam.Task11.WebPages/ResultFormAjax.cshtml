@@ -17,7 +17,6 @@
         var userLogic = Dependency.UserLogic;
         var user = new User(name, new DateTime(year, month, day));
         userLogic.Add(user);
-        userLogic.Save();
 
         <p>Пользователь добавлен</p>
 
@@ -28,7 +27,6 @@
 
         var userLogic = Dependency.UserLogic;
         userLogic.Delete(id);
-        userLogic.Save();
 
         <p>Пользователь удален</p>
     }
@@ -39,7 +37,6 @@
         Award award = new Award { Title = name };
 
         awardLogic.AddAwards(award);
-        awardLogic.Save();
         <p>Награда добавлена</p>
     }
     else if (classForm == "add-award-user")
@@ -48,11 +45,10 @@
         var idUser = int.Parse(Request.Params["idUser"]);
         var userLogic = Dependency.UserLogic;
         var awardLogic = Dependency.AwardLogic;
-        var user = userLogic.GetById(idUser);
-        var award = awardLogic.GetById(idAward);
 
-        userLogic.AddAward(user, award);
-        userLogic.Save();
+
+        userLogic.AddAwardForUser(idUser, idAward);
+
 
         <p>Награда добавлена</p>
     }
@@ -114,7 +110,24 @@
             </select>
             <button class="submit-change" type="submit" name="submitChange">Enter</button>
         </form>
-        <script src="change_user.js"></script>
+        <script src="js2/change_user.js"></script>
+    }
+    else if (classForm == "change-by-id")
+    {
+        var id = int.Parse(Request.Params["id"]);
+        var name = Request.Params["name"];
+        var year = int.Parse(Request.Params["year"]);
+        var month = int.Parse(Request.Params["month"]);
+        var day = int.Parse(Request.Params["day"]);
+
+        var userLogic = Dependency.UserLogic;
+
+        var user = new User(name, new DateTime(year, month, day));
+        user.Id = id;
+
+        userLogic.Update(user);
+
+        <p>Пользователь изменен</p>
     }
     else if (classForm == "delete-award")
     {
@@ -124,9 +137,16 @@
         var userLogic = Dependency.UserLogic;
 
         awardLogic.Delete(id);
-        awardLogic.Save();
 
 
-    <p>Награда удалена</p>
+        <p>Награда удалена</p>
     }
+    else if (classForm == "add-photo")
+    {
+        var id = int.Parse(Request.Params["id"]);
+        var pathFile = Request.Params["pathFile"];
+        var userLogic = Dependency.UserLogic;
+
+        userLogic.PutImageOfUser(id ,pathFile);
     }
+}

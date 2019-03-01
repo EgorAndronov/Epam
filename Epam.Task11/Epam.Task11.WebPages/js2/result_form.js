@@ -1,8 +1,10 @@
 (function () {
     $(".result-form").submit(function (event) {
         $blockResult = $("#result-block");
-        var arrClass = ["add-user", "delete-user", "add-award", "add-award-user", "change", "delete-award"];
+        var arrClass = ["add-user", "delete-user", "add-award", "add-award-user", "change", "delete-award", "add-photo"];
+        
         event.preventDefault();
+        
         if (event.target.classList.contains(arrClass[0])) {
             $.ajax({
                 method: "POST",
@@ -79,6 +81,21 @@
                 data: {
                     id: $("input[name=idOfAward]").val(),
                     classForm: arrClass[5],
+                },
+                success: function (response) {
+                    $blockResult.empty();
+                    $blockResult.append(response);
+                }
+            })
+        } else if (event.target.classList.contains(arrClass[6])) {
+            console.log($("input[name=photo]").val().slice($("input[name=photo]").val().lastIndexOf('\\') + 1))
+            $.ajax({
+                method: "POST",
+                url: "/ResultFormAjax.cshtml",
+                data: {
+                    id: $("input[name=idOfUser]").val(),
+                    pathFile: $("input[name=photo]").val().slice($("input[name=photo]").val().lastIndexOf('\\') + 1),
+                    classForm: arrClass[6],
                 },
                 success: function (response) {
                     $blockResult.empty();

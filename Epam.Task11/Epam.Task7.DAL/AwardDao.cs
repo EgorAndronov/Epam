@@ -13,7 +13,33 @@ namespace Epam.Task7.DAL
 {
     public class AwardDao : IAwardDao
     {
-        private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.FullName, "Data", "Awards.txt"));
+        private FileInfo file = new FileInfo(Path.Combine(new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName, "Data", "Awards.txt"));
+
+        public void Add(Award award)
+        {
+            if (File.ReadAllLines(this.file.FullName).Count() != 0) { 
+            var last = File.ReadAllLines(this.file.FullName).Last();
+            User awardLast = JsonConvert.DeserializeObject<User>(last);
+            award.Id = awardLast.Id + 1;
+            }
+            else
+            {
+                award.Id = 1;
+            }
+            
+            using (StreamWriter sw = this.file.AppendText())
+            {
+
+                string serialize = JsonConvert.SerializeObject(award);
+                sw.WriteLine(serialize);
+
+            }
+        }
+
+        public void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<Award> Get()
         {

@@ -7,6 +7,25 @@
 </head>
 <body>
     <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            if (User.IsInRole("Admins"))
+            {
+                <p>Admin</p>
+            }
+            else if (User.IsInRole("User"))
+            {
+                <p>User</p>
+            }
+
+            <p>User name: @User.Identity.Name</p>
+            <a href="~/Logout.cshtml">Logout</a>
+        }
+        else
+        {
+            <a href="~/Login.cshtml">LogIn</a>
+            <a href="~/Registration.cshtml">Registration</a>
+        }
         @RenderBody()
     </div>
     @RenderSection("Styles", required: false)

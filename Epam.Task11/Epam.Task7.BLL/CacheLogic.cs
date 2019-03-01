@@ -38,6 +38,11 @@ namespace Epam.Task7.BLL
             return cache.Remove(key);
         }
 
+        public void DeleteAll()
+        {
+            cache.Clear();
+        }
+
         public IEnumerable<K> GetKeys()
         {
             return cache.Keys;

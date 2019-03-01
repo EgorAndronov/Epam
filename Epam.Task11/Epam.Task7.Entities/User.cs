@@ -8,7 +8,6 @@ namespace Epam.Task7.Entities
 {
     public class User
     {
-        private List<Award> awards = new List<Award>();
 
         public User()
         {
@@ -40,17 +39,6 @@ namespace Epam.Task7.Entities
             }
         }
 
-        public List<Award> Awards
-        {
-            get
-            {
-                return this.awards;
-            }
-
-            set
-            {
-                this.awards = value;
-            }
-        }
+        
     }
 }

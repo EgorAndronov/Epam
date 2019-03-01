@@ -1,0 +1,45 @@
+﻿@using Epam.Task7.Common;
+
+@if (User.Identity.IsAuthenticated)
+{
+    <a href="~/Logout.cshtml">LogOut</a>
+}
+else
+{
+    <a href="~/Login.cshtml">LogIn</a>
+}
+<form action="~/Registration.cshtml" method="post">
+    <label>Имя пользователя</label>
+    <input type="text" id="login" name="LogIn" /><br />
+    <label>Пароль</label>
+    <input type="password" id="password" name="Password" />
+    <label>Подтвердите пароль</label>
+    <input type="password" id="passwordConfirm" name="PasswordConfirm" />
+    <button type="submit" id="submit-registration">Enter</button>
+</form>
+
+<style>
+    #submit-registration {
+        padding: 5px;
+    }
+</style>
+
+@if (IsPost)
+{
+    var login = Request["LogIn"];
+    var password = Request["Password"];
+    var passwordConfirm = Request["PasswordConfirm"];
+
+    if (password == passwordConfirm)
+    {
+        var registeredLogic = Dependency.RegisteredLogic;
+        registeredLogic.Add(login, password);
+        Response.Redirect("~");
+    }
+    else
+    {
+        <p>Passwords do not match</p>
+    }
+
+    return;
+}

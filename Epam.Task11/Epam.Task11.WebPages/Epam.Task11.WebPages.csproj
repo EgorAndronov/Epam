@@ -93,19 +93,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Role_Provider\MyRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Index.cshtml" />
-    <Content Include="UserListAjax.cshtml" />
     <Content Include="IndexPost.cshtml" />
     <Content Include="AddUserPost.cshtml" />
     <Content Include="IndexAjax.cshtml" />
-    <Content Include="ChangeUserAjax.cshtml" />
     <Content Include="Logout.cshtml" />
     <Content Include="Login.cshtml" />
     <None Include="packages.config" />
     <Content Include="ResultFormAjax.cshtml" />
-    <Content Include="_Registration.cshtml" />
+    <Content Include="Registration.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -113,7 +112,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="_Layout.cshtml" />
-    <Content Include="_HelloPartial.cshtml" />
     <Content Include="DeleteUserPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -130,9 +128,7 @@
       <Name>Epam.Task11.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Role_Provider\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

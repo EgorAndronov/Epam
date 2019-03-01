@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,46 +20,53 @@ namespace Epam.Task7.BLL
         {
             this.userDao = userDao;
             this.cacheLogic = cacheLogic;
-            this.FillCache();
         }
 
         public void Add(User user)
         {
-            int lastId;
-            if (this.cacheLogic.GetKeys().Any())
-            {
-                lastId = this.cacheLogic.GetKeys().Max();
-            }
-            else
-            {
-                lastId = 0;
-            }
-
-            user.Id = ++lastId;
-
-            this.cacheLogic.Add(user.Id, user);
+            
+            this.cacheLogic.DeleteAll();
+            this.userDao.Add(user);
         }
 
         public void Delete(int id)
         {
-            this.cacheLogic.Delete(id);
+            this.cacheLogic.DeleteAll();
+            this.userDao.Delete(id);
         }
 
-        public void Change(int id, User user)
+        public void Update(User user)
         {
-            this.cacheLogic.Delete(id);
-            user.Id = id;
-            this.cacheLogic.Add(id, user);
+            this.cacheLogic.DeleteAll();
+
+            this.userDao.Update(user);
         }
 
         public IEnumerable<User> GetAll()
         {
-            return this.cacheLogic.GetAll();
+            var result = this.cacheLogic.GetAll();
+            if(result.Count() == 0) { 
+                foreach (var item in this.userDao.Get())
+                {
+                    this.cacheLogic.Add(item.Id, item);
+                }
+                return this.cacheLogic.GetAll(); 
+            }
+            else
+            {
+                return result;
+            }
+
         }
 
         public User GetById(int id)
         {
-            return this.cacheLogic.GetById(id);
+            return this.userDao.GetById(id);
+        }
+
+        public void AddAwardForUser(int idUser, int idAward)
+        {
+            this.userDao.AddAwardForUser(idUser, idAward);
         }
 
         public void Save()
@@ -66,17 +74,19 @@ namespace Epam.Task7.BLL
             this.userDao.Save(this.cacheLogic);
         }
 
-        public void AddAward(User user, Award award)
+        public IEnumerable<IEnumerable<int>> GetUserAward()
         {
-            user.Awards.Add(award);
+            return userDao.GetUserAward();
         }
 
-        private void FillCache()
+        public void PutImageOfUser(int id, string pathFile)
         {
-            foreach (var item in this.userDao.Get())
-            {
-                this.cacheLogic.Add(item.Id, item);
-            }
+            this.userDao.PutImageOfUser(id, pathFile);
+        }
+
+        public Image GetImageBase64FromDb(int id)
+        {
+            return this.userDao.GetImageBase64FromDb(id);
         }
     }
 }

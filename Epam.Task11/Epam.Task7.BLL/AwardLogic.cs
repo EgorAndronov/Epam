@@ -24,7 +24,19 @@ namespace Epam.Task7.BLL
 
         public IEnumerable<Award> GetAllAward()
         {
-            return this.cacheLogicAwards.GetAll();
+            var result = this.cacheLogicAwards.GetAll();
+            if (result.Count() == 0)
+            {
+                foreach (var item in this.awardDao.Get())
+                {
+                    this.cacheLogicAwards.Add(item.Id, item);
+                }
+                return this.cacheLogicAwards.GetAll();
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public void AddAwards(Award award)
@@ -40,13 +52,14 @@ namespace Epam.Task7.BLL
             }
 
             award.Id = ++lastId;
-
-            this.cacheLogicAwards.Add(award.Id, award);
+            this.cacheLogicAwards.DeleteAll();
+            this.awardDao.Add(award);
         }
 
         public void Delete(int id)
         {
-            this.cacheLogicAwards.Delete(id);
+            this.cacheLogicAwards.DeleteAll();
+            this.awardDao.Delete(id);
         }
 
 

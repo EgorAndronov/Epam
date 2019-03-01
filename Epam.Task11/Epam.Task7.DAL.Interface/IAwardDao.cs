@@ -13,5 +13,9 @@ namespace Epam.Task7.DAL.Interface
         IEnumerable<Award> Get();
 
         void Save(ICacheLogic<int, Award> cacheLogic);
+
+        void Add(Award award);
+
+        void Delete(int id);
     }
 }

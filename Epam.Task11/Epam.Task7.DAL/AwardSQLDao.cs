@@ -21,14 +21,48 @@ namespace Epam.Task7.DAL
             _connectionString = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
 
+        public void Add(Award award)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var commandAdd = sqlConnection.CreateCommand();
+                commandAdd.CommandText = "AddAward";
+                commandAdd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parameterTitle = new SqlParameter("@Title", award.Title);
+                commandAdd.Parameters.Add(parameterTitle);
+
+
+                sqlConnection.Open();
+                commandAdd.ExecuteNonQuery();
+            }
+        }
+
+        public void Delete(int id)
+        {
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var command = sqlConnection.CreateCommand();
+                command.CommandText = "DeleteAward";
+                command.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter parameterId = new SqlParameter("@Id", id);
+                command.Parameters.Add(parameterId);
+
+
+                sqlConnection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
         public IEnumerable<Award> Get()
         {
             var result = new List<Award>();
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = sqlConnection.CreateCommand();
-                command.CommandText = "SELECT * FROM Awards";
-                command.CommandType = CommandType.Text;
+                command.CommandText = "GetAllAwards";
+                command.CommandType = CommandType.StoredProcedure;
                 sqlConnection.Open();
 
                 var reader = command.ExecuteReader();
@@ -36,8 +70,8 @@ namespace Epam.Task7.DAL
                 {
                     var award = new Award
                     {
-                        Id = (int)reader["id"],
-                        Title = (string)reader["title"],
+                        Id = (int)reader["Id"],
+                        Title = (string)reader["Title"],
                     };
                     result.Add(award);
                 }

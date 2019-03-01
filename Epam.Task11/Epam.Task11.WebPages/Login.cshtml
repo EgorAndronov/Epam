@@ -1,5 +1,30 @@
-﻿@if (IsPost)
+﻿@using Epam.Task7.Common;
+
+@if (IsPost)
 {
     var user = Request["UserName"];
     var password = Request["Password"];
+    var registeredLogic = Dependency.RegisteredLogic;
+
+
+    if (registeredLogic.Exist(user, password))
+    {
+        FormsAuthentication.SetAuthCookie(user, createPersistentCookie: true);
+    }
+    else
+    {
+        Response.Redirect("~/LogIn");
+    }
+    Response.Redirect("~");
+    return;
 }
+
+
+
+<form action="~/Login.cshtml" method="post">
+    <label for="username">User Name</label>
+    <input type="text" name="UserName" id="username">
+    <label for="password">Password</label>
+    <input type="password" name="Password" id="password">
+    <button type="submit">Log In</button>
+</form>

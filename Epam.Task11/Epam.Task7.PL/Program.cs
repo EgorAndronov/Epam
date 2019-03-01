@@ -71,10 +71,7 @@ namespace Epam.Task7.PL
                                     Console.WriteLine("Enter id of award");
                                     if (int.TryParse(Console.ReadLine(), out int idAward))
                                     {
-                                        Console.WriteLine("Enter id of award");
-                                        var user = userLogic.GetById(idUser);
-                                        var award = awardLogic.GetById(idAward);
-                                        userLogic.AddAward(user, award);
+                                        userLogic.AddAwardForUser(idUser, idAward);
                                     }
                                     else
                                     {
@@ -101,8 +98,6 @@ namespace Epam.Task7.PL
                     }
                 }
 
-                awardLogic.Save();
-                userLogic.Save();
             }
             catch (Exception ex)
             {
@@ -133,16 +128,32 @@ namespace Epam.Task7.PL
 
         public static void ShowUsers(IUserLogic userLogic)
         {
+            var awardLogic = Dependency.AwardLogic;
+            var awardList = awardLogic.GetAllAward();
             foreach (var item in userLogic.GetAll())
             {
                 Console.WriteLine($"Id: {item.Id} Name: {item.Name} Date: {item.DateofBirth.ToShortDateString()} Age: {item.Age}");
-                if (item.Awards != null)
+                Console.WriteLine($"Awards:");
+                Console.WriteLine();
+                foreach (var aw in userLogic.GetUserAward())
                 {
-                    foreach (var aw in item.Awards)
+                    
+                    if (aw != null)
                     {
-                        Console.WriteLine($"Awards {aw.Title}");
+                        if (item.Id == aw.First())
+                        {
+                            foreach (var award in awardList)
+                            {
+                                if (award.Id == aw.Last())
+                                {
+                                    Console.WriteLine($"{award.Title}");
+                                }
+                            }
+                        }
                     }
                 }
+                Console.WriteLine();
+
             }
         }
     }

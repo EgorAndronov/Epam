@@ -13,7 +13,7 @@ namespace Epam.Task7.BLL.Interface
 
         void Delete(int id);
 
-        void Change(int id, User user);
+        void Update(User user);
 
         IEnumerable<User> GetAll();
 
@@ -21,6 +21,11 @@ namespace Epam.Task7.BLL.Interface
 
         User GetById(int id);
 
-        void AddAward(User user, Award award);
+        void AddAwardForUser(int idUser, int idAward);
+
+        IEnumerable<IEnumerable<int>> GetUserAward();
+
+        void PutImageOfUser(int id, string pathFile);
+
     }
 }

@@ -3,119 +3,182 @@
 
 @if (IsAjax)
 {
-    <script src="result_form.js"></script>
 
-    var value = Request.Params["value"];
-
-
-    if (value == "addUser")
+    try
     {
-        <form action="" method="post" class="result-form add-user">
-            <label>Имя</label>
-            <input type="text" name="nameOfUser" value="" /><br />
-            <p>День Рождения</p>
-            <label>Год</label>
-            <select name="yearOfUser">
-                @for (var i = 2019; i >= 1900; i--)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-            <label>Месяц</label>
-            <select name="monthOfUser">
-                @for (var i = 1; i <= 12; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-            <label>День</label>
-            <select name="dayOfUser">
-                @for (var i = 1; i <= 31; i++)
-                {
-                    <option value="@i">@i</option>
-                }
-            </select>
-            <button class="submit-add" type="submit" name="submitAdd">Enter</button>
-        </form>
+        var value = Request.Params["value"];
 
-    }
-    else if (value == "deleteUser")
-    {
-        <form action="" method="post" class="result-form delete-user">
-            <label>Введите уникальный номер пользователя</label>
-            <input type="number" name="idOfUser" value="" /><br />
 
-            <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
-        </form>
+        if (value == "addUser")
+        {
+            <form action="" method="post" class="result-form add-user">
+                <label>Имя</label>
+                <input type="text" name="nameOfUser" value="" /><br />
+                <p>День Рождения</p>
+                <label>Год</label>
+                <select name="yearOfUser">
+                    @for (var i = 2019; i >= 1900; i--)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <label>Месяц</label>
+                <select name="monthOfUser">
+                    @for (var i = 1; i <= 12; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <label>День</label>
+                <select name="dayOfUser">
+                    @for (var i = 1; i <= 31; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <button class="submit-add" type="submit" name="submitAdd">Enter</button>
+            </form>
 
-    }
-    else if (value == "userList")
-    {
-        var userLogic = Dependency.UserLogic;
-        var userList = userLogic.GetAll();
+        }
+        else if (value == "deleteUser")
+        {
+            <form action="" method="post" class="result-form delete-user">
+                <label>Введите уникальный номер пользователя</label>
+                <input type="number" name="idOfUser" value="" /><br />
 
-        <ul>
-            @foreach (var item in userList)
-            {
-                <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
-                if (item.Awards != null)
+                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+            </form>
+
+        }
+        else if (value == "userListWithAwards")
+        {
+            var userLogic = Dependency.UserLogic;
+            var userList = userLogic.GetAll();
+            var usersAwards = userLogic.GetUserAward();
+            var awardLogic = Dependency.AwardLogic;
+            var awardList = awardLogic.GetAllAward();
+            <ul>
+                @foreach (var item in userList)
                 {
+                    <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
+
+
                     <p>Награды:</p>
                     <ol>
-                        @foreach (var aw in item.Awards)
+                        @foreach (var aw in usersAwards)
                         {
-                            <li>@aw.Title</li>
+                            if (aw != null)
+                            {
+                                if (item.Id == aw.First())
+                                {
+                                    foreach (var award in awardList)
+                                    {
+                                        if (award.Id == aw.Last())
+                                        {
+                                            <li>@award.Title</li>
+                                        }
+                                    }
+
+                                }
+                            }
                         }
                     </ol>
+                    <br />
+
+
                 }
-            }
-        </ul>
-    }
-    else if (value == "addNewAward")
-    {
-        <form action="" method="post" class="result-form add-award">
-            <label>Введите название награды</label>
-            <input type="text" name="newAward" value="" /><br />
-            <button class="submit-add-award" type="submit" name="submitAddAward">Enter</button>
-        </form>
-    }
-    else if (value == "addAwardUser")
-    {
-        <form action="" method="post" class="result-form add-award-user">
-            <label>Введите уникальный номер пользователя</label>
-            <input type="number" name="idOfUser" value="" /><br />
-            <label>Введите уникальный номер награды</label>
-            <input type="number" name="idOfAward" value="" /><br />
-            <button class="submit-add-award-user" type="submit" name="submitAddAwardUser">Enter</button>
-        </form>
-    }
-    else if (value == "awardList")
-    {
-        var awardLogic = Dependency.AwardLogic;
-        <ul>
-            @foreach (var item in awardLogic.GetAllAward())
-            {
-                <li>@($"Id: {item.Id} Title: {item.Title}")</li>
-            }
-        </ul>
-    }
-    else if (value == "changeUser")
-    {
-        <form action="" method="post" class="result-form change">
-            <label>Введите уникальный номер пользователя</label>
-            <input type="number" name="idOfUser" value="" /><br />
-            <button class="submit-change" type="submit" name="submitChange">Enter</button>
-        </form>
-    }
-    else if (value == "deleteAward")
-    {
-        <form action="" method="post" class="result-form delete-award">
-            <label>Введите уникальный номер награды</label>
-            <input type="number" name="idOfAward" value="" /><br />
+            </ul>
+        }
+        else if (value == "userList")
+        {
+            var userLogic = Dependency.UserLogic;
+            var userList = userLogic.GetAll();
+            var usersAwards = userLogic.GetUserAward();
+            var awardLogic = Dependency.AwardLogic;
+            var awardList = awardLogic.GetAllAward();
+            <ul>
+                @foreach (var item in userList)
+                {
+                    <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
+                    <br />
+                }
+            </ul>
+        }
+        else if (value == "addNewAward")
+        {
+            <form action="" method="post" class="result-form add-award">
+                <label>Введите название награды</label>
+                <input type="text" name="newAward" value="" /><br />
+                <button class="submit-add-award" type="submit" name="submitAddAward">Enter</button>
+            </form>
+        }
+        else if (value == "addAwardUser")
+        {
+            <form action="" method="post" class="result-form add-award-user">
+                <label>Введите уникальный номер пользователя</label>
+                <input type="number" name="idOfUser" value="" /><br />
+                <label>Введите уникальный номер награды</label>
+                <input type="number" name="idOfAward" value="" /><br />
+                <button class="submit-add-award-user" type="submit" name="submitAddAwardUser">Enter</button>
+            </form>
+        }
+        else if (value == "awardList")
+        {
+            var awardLogic = Dependency.AwardLogic;
+            <ul>
+                @foreach (var item in awardLogic.GetAllAward())
+                {
+                    <li>@($"Id: {item.Id} Title: {item.Title}")</li>
+                }
+            </ul>
+        }
+        else if (value == "changeUser")
+        {
+            <form action="" method="post" class="result-form change">
+                <label>Введите уникальный номер пользователя</label>
+                <input type="number" name="idOfUser" value="" /><br />
+                <button class="submit-change" type="submit" name="submitChange">Enter</button>
+            </form>
+        }
+        else if (value == "deleteAward")
+        {
+            <form action="" method="post" class="result-form delete-award">
+                <label>Введите уникальный номер награды</label>
+                <input type="number" name="idOfAward" value="" /><br />
 
-            <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
-        </form>
+                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+            </form>
 
+        }
+        else if (value == "deleteAward")
+        {
+            <form action="" method="post" class="result-form delete-award">
+                <label>Введите уникальный номер награды</label>
+                <input type="number" name="idOfAward" value="" /><br />
+
+                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+            </form>
+
+        }
+        else if (value == "addPhoto")
+        {
+            <form action="" method="post" class="result-form add-photo">
+                <label>Введите уникальный номер пользователя</label>
+                <input type="number" name="idOfUser" value="" /><br />
+                <label>Выберите фото</label>
+                <input type="file" accept="image/*" name="photo" value="" /><br />
+
+                <button class="submit-add-photo" type="submit" name="submitAddPhoto">Enter</button>
+            </form>
+
+        }
+
+    }
+    catch(Exception ex)
+    {
+        <p>@ex</p>
     }
 }
+
+<script src="js2/result_form.js"></script>
 
