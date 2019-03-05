@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace Epam.Task7.BLL.Interface
         IEnumerable<IEnumerable<int>> GetUserAward();
 
         void PutImageOfUser(int id, string pathFile);
+
+        string GetImageBase64FromDb(int id);
 
     }
 }

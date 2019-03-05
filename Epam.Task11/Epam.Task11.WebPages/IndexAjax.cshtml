@@ -36,7 +36,7 @@
                         <option value="@i">@i</option>
                     }
                 </select>
-                <button class="submit-add" type="submit" name="submitAdd">Enter</button>
+                <button class="submit submit-add" type="submit" name="submitAdd">Enter</button>
             </form>
 
         }
@@ -45,8 +45,7 @@
             <form action="" method="post" class="result-form delete-user">
                 <label>Введите уникальный номер пользователя</label>
                 <input type="number" name="idOfUser" value="" /><br />
-
-                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+                <button class="submit submit-delete" type="submit" name="submitDelete">Enter</button>
             </form>
 
         }
@@ -60,7 +59,20 @@
             <ul>
                 @foreach (var item in userList)
                 {
-                    <li>@($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")</li>
+
+                    var image = userLogic.GetImageBase64FromDb(item.Id);
+                    <li>
+                        @if (image != string.Empty)
+                        {
+                        <img class="user-img" src="data:image/png; base64, @image" />
+                        }
+                        else
+                        {
+                        var stringImageDefault = "iVBORw0KGgoAAAANSUhEUgAAAoAAAAHgCAIAAAC6s0uzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAIB1JREFUeNrs3dl6Gge2gFELJGaheXSn3 / +9EtuahUDMIM4 + 0K1OpxPbEVUFBWtd6HNyIURB8bNr3Lm7u / sEAGRrR4ABQIABQIABAAEGAAEGAAQYAAQYABBgABBgAECAAUCAAUCAAQABBgABBgAEGAAEGAAQYAAQYABAgAFAgAFAgAEAAQYAAQYABBgABBgAEGAAEGAAQIABQIABQIABAAEGAAEGAAQYAAQYABBgABBgAECAAUCAAUCAAQABBgABBgAEGAAEGAAQYAAQYABAgAFAgAFAgAEAAQYAAQYABBgABBgAEGAAEGAAQIABQIABQIABAAEGAAEGAAQYAAQYABBgABBgAECAAUCAAUCAAQABBgABBgAEGAAEGAAQYAAQYABAgAFAgAFAgAEAAQYAAQYABBgABBgAEGAAEGAAQIABQIABQIAFGAAEGAAEGAAQYAAQYABAgAFAgAEAAQYAAQYABBgABBgABBgAEGAAEGAAQIABQIABAAEGAAEGAAQYAAQYAAQYABBgABBgAECAAUCAAQABBgABBgAEGAAEGAAEGAAQYAAQYABAgGHFptNprESj0WirnnWpVDo / Py8Wi94A8GG7FgEs4 / n5udPpbNuzHg6H0eCTkxNvADABwwo8PDw8PT1t7dM / mfM2AAEG9dVgEGBQXw0GBBjUV4NBgEF9NRgEWIBBfTUYBBjUV4NBgAH11WAQYFBfDQYBBvVFg0GAQX01GAQY1BcNBgEG9dVgEGBQXw0GBBjUV4NBgEF9NRgEGNQXDQYBBvXVYBBgUF80GAQY1FeDQYBBfdFgEGBQXw0GAQb1RYNBgFFfNBgEGNRXg0GAQX3RYBBgUF8NBgEG9UWDQYBBfTUYBBjUFw0GAQb11WAQYFBfNBgEGPVFg0GAQX3RYAQY1BcNBgEG9dVgDUaAQX3RYBBgUF8NBgFmi81ms / efq / L8 / Pz4 + Oi12OwGHx0drfITc2fn / ScIMKsx / m + Tube3txVmePHobLZCobDC9Maj787t / TevCwJMujNuJLbX6 / X7 / dFotCiuxcKWW / S4VCpVq9VarRb / Nh8jwCRmMBj05iK9q93IDGv9ebqzs8hwqFQqFggCzAfFgNvtdtvt9nA4tHUXfl6hUCiXy81ms16vx0xsgSDA / KzRaPTy8tLpdGxkhmXs7e01Go2Dg4NSqWRpIMB8z3g8fpmbTqeWBiSiWCwezDlcCwHmT8xms1ar9fz8bOqFNOzu7h4dHR0eHjpKCwHmP / r9 / sPDQ / y0KCBV1Wr19PQ0floUCDD / un6Fw6wgG4VCYeVXFEGAWbGIbrwB2u22RQEZazab5 + fnq7quCALMKo3H45ubG5udYVWq1erl5aUjswSY7TIajb5 +/ Ro / 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";
+                        <img class="user-img" src="data:image/png; base64, @stringImageDefault" />
+                        }
+                        @($"Уникальный номер пользователя: {item.Id}, имя: {item.Name}, дата рождения: {item.DateofBirth.ToString("d")}, возраст: {item.Age}. ")
+                    </li>
 
 
                     <p>Награды:</p>
@@ -137,7 +149,7 @@
             <form action="" method="post" class="result-form change">
                 <label>Введите уникальный номер пользователя</label>
                 <input type="number" name="idOfUser" value="" /><br />
-                <button class="submit-change" type="submit" name="submitChange">Enter</button>
+                <button class="submit submit-change" type="submit" name="submitChange">Enter</button>
             </form>
         }
         else if (value == "deleteAward")
@@ -146,7 +158,7 @@
                 <label>Введите уникальный номер награды</label>
                 <input type="number" name="idOfAward" value="" /><br />
 
-                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+                <button class="submit submit-delete" type="submit" name="submitDelete">Enter</button>
             </form>
 
         }
@@ -156,7 +168,7 @@
                 <label>Введите уникальный номер награды</label>
                 <input type="number" name="idOfAward" value="" /><br />
 
-                <button class="submit-delete" type="submit" name="submitDelete">Enter</button>
+                <button class="submit submit-delete" type="submit" name="submitDelete">Enter</button>
             </form>
 
         }
@@ -168,17 +180,33 @@
                 <label>Выберите фото</label>
                 <input type="file" accept="image/*" name="photo" value="" /><br />
 
-                <button class="submit-add-photo" type="submit" name="submitAddPhoto">Enter</button>
+                <button class="submit submit-add-photo" type="submit" name="submitAddPhoto">Enter</button>
             </form>
 
         }
 
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         <p>@ex</p>
     }
 }
 
-<script src="js2/result_form.js"></script>
+<style>
+    .submit {
+        padding: 5px 10px;
+        background-color: #5181B8;
+        color: white;
+        font-size: 20px;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    img{
+        width:100px;
+    }
+</style>
+
+<script src="js/result_form.js"></script>
 

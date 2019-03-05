@@ -23,6 +23,11 @@ namespace Epam.Task7.BLL
             }
         }
 
+        public bool containsKey(K key)
+        {
+            return cache.ContainsKey(key);
+        }
+
         public T GetById(K key)
         {
             if (cache.ContainsKey(key))

@@ -24,7 +24,6 @@ namespace Epam.Task7.BLL
 
         public void Add(User user)
         {
-            
             this.cacheLogic.DeleteAll();
             this.userDao.Add(user);
         }
@@ -84,7 +83,7 @@ namespace Epam.Task7.BLL
             this.userDao.PutImageOfUser(id, pathFile);
         }
 
-        public Image GetImageBase64FromDb(int id)
+        public string GetImageBase64FromDb(int id)
         {
             return this.userDao.GetImageBase64FromDb(id);
         }

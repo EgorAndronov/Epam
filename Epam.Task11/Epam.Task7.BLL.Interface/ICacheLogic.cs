@@ -19,5 +19,7 @@ namespace Epam.Task7.BLL.Interface
         IEnumerable<T> GetAll();
 
         void DeleteAll();
+
+        bool containsKey(K key);
     }
 }

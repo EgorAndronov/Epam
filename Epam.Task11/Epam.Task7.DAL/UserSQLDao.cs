@@ -44,6 +44,11 @@ namespace Epam.Task7.DAL
 
         public void Delete(int id)
         {
+            if (!this.ExistUser(id))
+            {
+                throw new Exception("This id doesn't exist");
+            }
+
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = sqlConnection.CreateCommand();
@@ -85,6 +90,10 @@ namespace Epam.Task7.DAL
 
         public User GetById(int id)
         {
+            if (!this.ExistUser(id))
+            {
+                throw new Exception("Id of User doesn't exist");
+            }
             var result = new User();
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
@@ -109,6 +118,16 @@ namespace Epam.Task7.DAL
 
         public void AddAwardForUser(int idUser, int idAward)
         {
+            if (!this.ExistUser(idUser))
+            {
+                throw new Exception("Id of User doesn't exist");
+            }
+
+            if (!this.ExistAward(idAward))
+            {
+                throw new Exception("Id of Award doesn't exist");
+            }
+
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = sqlConnection.CreateCommand();
@@ -149,6 +168,11 @@ namespace Epam.Task7.DAL
 
         public void Update(User user)
         {
+            if (!this.ExistUser(user.Id))
+            {
+                throw new Exception("Id of User doesn't exist");
+            }
+
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = sqlConnection.CreateCommand();
@@ -204,11 +228,12 @@ namespace Epam.Task7.DAL
 
         }
 
-        public Image GetImageBase64FromDb(int id)
+        public string GetImageBase64FromDb(int id)
         {
             
             List<string> iScreen = new List<string>(); 
             List<string> iScreen_format = new List<string>();
+            string base64StringImage = string.Empty;
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 
@@ -229,17 +254,18 @@ namespace Epam.Task7.DAL
                     iScreen.Add(iTrimText);
                     iTrimText = reader["screen_format"].ToString().TrimStart().TrimEnd(); 
                     iScreen_format.Add(iTrimText);
+                    base64StringImage = iScreen[0];
                 }
                 
             }
 
             
-            string base64StringImage = iScreen[0];
-            byte[] imageData = Convert.FromBase64String(base64StringImage);
-            MemoryStream ms = new MemoryStream(imageData);
-            Image newImage = Image.FromStream(ms);
+            
+            //byte[] imageData = Convert.FromBase64String(base64StringImage);
+            //MemoryStream ms = new MemoryStream(imageData);
+            //Image newImage = Image.FromStream(ms);
 
-            return newImage;
+            return base64StringImage;
         }
 
         public void Save(ICacheLogic<int, User> cacheLogic)
@@ -247,6 +273,51 @@ namespace Epam.Task7.DAL
             
         }
 
+        private bool ExistUser(int id)
+        {
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var command = sqlConnection.CreateCommand();
+                command.CommandText = "GetUser";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter parameterId = new SqlParameter("@Id", id);
+                command.Parameters.Add(parameterId);
+
+                sqlConnection.Open();
+
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        private bool ExistAward(int id)
+        {
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var command = sqlConnection.CreateCommand();
+                command.CommandText = "GetAward";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter parameterId = new SqlParameter("@Id", id);
+                command.Parameters.Add(parameterId);
+
+                sqlConnection.Open();
+
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
 
     }
 }

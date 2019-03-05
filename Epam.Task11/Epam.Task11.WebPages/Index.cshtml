@@ -16,8 +16,25 @@
 
 @section Styles{
     <style>
-        .submit-menu {
-            padding: 5px;
+        #submit-menu{
+            padding: 5px 10px;
+            background-color: #5181B8;
+            color: white;
+            font-size: 20px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        
+
+        select{
+            overflow:visible;
+        }
+
+        select > option{
+            height:10px;
+            padding:20px;
         }
 
     </style>
@@ -59,7 +76,7 @@
     if (User.IsInRole("Admins"))
     {
         <form action="/Index.cshtml" method="post" id="main-menu">
-            <select id="list-menu" name="list-menu">
+            <select id="list-menu" name="list-menu" size="9">
                 <option value="addUser">Добавить пользователя</option>
                 <option value="deleteUser">Удалить пользователя</option>
                 <option value="userListWithAwards">Список пользователей</option>
@@ -77,7 +94,7 @@
     else if (User.IsInRole("User"))
     {
         <form action="/Index.cshtml" method="post" id="main-menu">
-            <select id="list-menu" name="list-menu">
+            <select id="list-menu" name="list-menu" size="1">
                 <option value="userListWithAwards">Список пользователей</option>
             </select>
 
@@ -88,7 +105,7 @@
 else
 {
     <form action="/Index.cshtml" method="post" id="main-menu">
-        <select id="list-menu" name="list-menu">
+        <select id="list-menu" name="list-menu" size="1">
             <option value="userList">Список пользователей</option>
         </select>
 

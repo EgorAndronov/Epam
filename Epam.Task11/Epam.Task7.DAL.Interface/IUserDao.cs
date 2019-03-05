@@ -29,6 +29,6 @@ namespace Epam.Task7.DAL.Interface
 
         void PutImageOfUser(int id, string pathFile);
 
-        Image GetImageBase64FromDb(int id);
+        string GetImageBase64FromDb(int id);
     }
 }

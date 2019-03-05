@@ -168,5 +168,10 @@ namespace Epam.Task7.DAL
         {
             throw new NotImplementedException();
         }
+
+        string IUserDao.GetImageBase64FromDb(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -3,6 +3,7 @@
 
 @if (IsAjax)
 {
+    try { 
     var classForm = Request.Params["classForm"];
 
     if (classForm == "add-user")
@@ -110,7 +111,7 @@
             </select>
             <button class="submit-change" type="submit" name="submitChange">Enter</button>
         </form>
-        <script src="js2/change_user.js"></script>
+        <script src="js/change_user.js"></script>
     }
     else if (classForm == "change-by-id")
     {
@@ -140,13 +141,21 @@
 
 
         <p>Награда удалена</p>
-    }
-    else if (classForm == "add-photo")
-    {
-        var id = int.Parse(Request.Params["id"]);
-        var pathFile = Request.Params["pathFile"];
-        var userLogic = Dependency.UserLogic;
+        }
+        else if (classForm == "add-photo")
+        {
+            var id = int.Parse(Request.Params["id"]);
+            var pathFile = Request.Params["pathFile"];
+            var userLogic = Dependency.UserLogic;
 
-        userLogic.PutImageOfUser(id ,pathFile);
+            userLogic.PutImageOfUser(id ,pathFile);
+        }
+    }
+    catch (Exception ex){
+        <p>@ex.Message</p>
     }
 }
+
+<style>
+
+</style>

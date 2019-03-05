@@ -40,6 +40,11 @@ namespace Epam.Task7.DAL
 
         public void Delete(int id)
         {
+            if (!this.ExistAward(id))
+            {
+                throw new Exception("Id of Award doesn't exist");
+            }
+
             using (var sqlConnection = new SqlConnection(_connectionString))
             {
                 var command = sqlConnection.CreateCommand();
@@ -82,6 +87,29 @@ namespace Epam.Task7.DAL
         public void Save(ICacheLogic<int, Award> cacheLogic)
         {
             throw new NotImplementedException();
+        }
+
+        private bool ExistAward(int id)
+        {
+
+            using (var sqlConnection = new SqlConnection(_connectionString))
+            {
+                var command = sqlConnection.CreateCommand();
+                command.CommandText = "GetAward";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlParameter parameterId = new SqlParameter("@Id", id);
+                command.Parameters.Add(parameterId);
+
+                sqlConnection.Open();
+
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
     }
 }

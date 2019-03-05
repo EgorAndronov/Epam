@@ -75,18 +75,21 @@
                 }
             })
         } else if (event.target.classList.contains(arrClass[5])) {
-            $.ajax({
-                method: "POST",
-                url: "/ResultFormAjax.cshtml",
-                data: {
-                    id: $("input[name=idOfAward]").val(),
-                    classForm: arrClass[5],
-                },
-                success: function (response) {
-                    $blockResult.empty();
-                    $blockResult.append(response);
-                }
-            })
+            var a = confirm("The reward will be removed from all users. You confirm?");
+            if(a){
+                $.ajax({
+                    method: "POST",
+                    url: "/ResultFormAjax.cshtml",
+                    data: {
+                        id: $("input[name=idOfAward]").val(),
+                        classForm: arrClass[5],
+                    },
+                    success: function (response) {
+                        $blockResult.empty();
+                        $blockResult.append(response);
+                    }
+                })
+            }
         } else if (event.target.classList.contains(arrClass[6])) {
             console.log($("input[name=photo]").val().slice($("input[name=photo]").val().lastIndexOf('\\') + 1))
             $.ajax({
